@@ -3,28 +3,36 @@ import { handlePageChange } from "../routes/router.js";
 import validateEmail from "../validation/validateEmail.js";
 import validatePassword from "../validation/validatePassword.js";
 import validateName from "../validation/validateName.js";
-import validatePhone from "../validation/validatePhone.js";
-import validateAddress from "../validation/validateAddress.js";
+
 import User from "../models/User.js";
 import showToast from "../services/Toast.js";
 
-const inputName = document.getElementById("register-input-name");
+const inputFirstName = document.getElementById("register-input-firstName");
+const inputLastName = document.getElementById("register-input-lastName");
+const inputState = document.getElementById("register-input-state");
+const inputCountry = document.getElementById("register-input-country");
+const inputCity = document.getElementById("register-input-city");
+const inputStreet = document.getElementById("register-input-street");
+const inputHouseNum = document.getElementById("register-input-houseNumber");
+const inputZip = document.getElementById("register-input-zip");
 const inputEmail = document.getElementById("register-input-email");
-const inputPassword = document.getElementById("register-input-password");
 const inputPhone = document.getElementById("register-input-phone");
-const inputAddress = document.getElementById("register-input-address");
+const inputPassword = document.getElementById("register-input-password");
+const inputRepeatPassword = document.getElementById(
+  "register-input-repeatPassowrd"
+);
 const btnRegister = document.querySelector("#register-btn");
 
-let nameOk = false;
-let emailOk = false;
+let firstNameOk = false;
+let lastNameOk = false;
 let passwordOk = false;
-let phoneOk = false;
-let addressOk = false;
+let repeatPasswordOk = false;
+let emailOk = false;
 
 window.addEventListener("load", () => {
   //when page loaded
-  if (inputName.value !== "") {
-    checkNameInput();
+  if (inputFirstName.value !== "") {
+    checkFirstNameInput();
   }
   if (inputEmail.value !== "") {
     checkEmailInput();
@@ -32,16 +40,20 @@ window.addEventListener("load", () => {
   if (inputPassword.value !== "") {
     checkPasswordInput();
   }
-  if (inputPhone.value !== "") {
-    checkPhoneInput();
+  if (inputRepeatPassword.value !== "") {
+    checkRepeatPasswordInput();
   }
-  if (inputAddress.value !== "") {
-    checkAddressInput();
+  if (inputLastName.value !== "") {
+    checkLastNameInput();
   }
 });
 
-inputName.addEventListener("input", () => {
-  checkNameInput();
+inputFirstName.addEventListener("input", () => {
+  checkFirstNameInput();
+});
+
+inputLastName.addEventListener("input", () => {
+  checkLastNameInput();
 });
 
 inputEmail.addEventListener("input", () => {
@@ -51,29 +63,28 @@ inputEmail.addEventListener("input", () => {
 inputPassword.addEventListener("input", () => {
   checkPasswordInput();
 });
-inputPhone.addEventListener("input", () => {
-  checkPhoneInput();
+
+inputRepeatPassword.addEventListener("input", () => {
+  checkRepeatPasswordInput();
 });
 
-inputAddress.addEventListener("input", () => {
-  checkAddressInput();
-});
-
-const checkNameInput = () => {
-  let errorArr = validateName(inputName.value);
+const checkFirstNameInput = () => {
+  let errorArr = validateName(inputFirstName.value);
   //   console.log(reg.test(inputName.value));
   if (errorArr.length === 0) {
     //the text is ok
-    inputName.classList.remove("is-invalid");
-    document.getElementById("register-alert-name").classList.add("d-none");
-    nameOk = true;
+    inputFirstName.classList.remove("is-invalid");
+    document.getElementById("register-alert-firstname").classList.add("d-none");
+    firstNameOk = true;
   } else {
     //the text is not ok
-    inputName.classList.add("is-invalid");
-    document.getElementById("register-alert-name").classList.remove("d-none");
-    document.getElementById("register-alert-name").innerHTML =
+    inputFirstName.classList.add("is-invalid");
+    document
+      .getElementById("register-alert-firstname")
+      .classList.remove("d-none");
+    document.getElementById("register-alert-firstname").innerHTML =
       errorArr.join("<br>");
-    nameOk = false;
+    firstNameOk = false;
   }
   checkIfCanEnableBtn();
 };
@@ -115,54 +126,59 @@ const checkPasswordInput = () => {
   }
   checkIfCanEnableBtn();
 };
-const checkPhoneInput = () => {
-  let errorArr = validatePhone(inputPhone.value);
-  if (errorArr.length === 0) {
+const checkRepeatPasswordInput = () => {
+  if (inputRepeatPassword.value === inputPassword.value) {
     //the text is ok
-    inputPhone.classList.remove("is-invalid");
-    document.getElementById("register-alert-phone").classList.add("d-none");
-    phoneOk = true;
+    inputRepeatPassword.classList.remove("is-invalid");
+    document
+      .getElementById("register-alert-repeatPassword")
+      .classList.add("d-none");
+    repeatPasswordOk = true;
   } else {
     //the text is not ok
-    inputPhone.classList.add("is-invalid");
-    document.getElementById("register-alert-phone").classList.remove("d-none");
-    document.getElementById("register-alert-phone").innerHTML =
+    inputRepeatPassword.classList.add("is-invalid");
+    document
+      .getElementById("register-alert-repeatPassword")
+      .classList.remove("d-none");
+    document.getElementById("register-alert-repeatPassword").innerHTML =
       errorArr.join("<br>");
     phoneOk = false;
   }
   checkIfCanEnableBtn();
 };
-const checkAddressInput = () => {
-  let errorArr = validateAddress(inputAddress.value);
+const checkLastNameInput = () => {
+  let errorArr = validateName(inputLastName.value);
   if (errorArr.length === 0) {
     //the text is ok
-    inputAddress.classList.remove("is-invalid");
-    document.getElementById("register-alert-address").classList.add("d-none");
-    addressOk = true;
+    inputLastName.classList.remove("is-invalid");
+    document.getElementById("register-alert-lastname").classList.add("d-none");
+    LastNameOk = true;
   } else {
     //the text is not ok
-    inputAddress.classList.add("is-invalid");
+    inputLastName.classList.add("is-invalid");
     document
-      .getElementById("register-alert-address")
+      .getElementById("register-alert-lastname")
       .classList.remove("d-none");
-    document.getElementById("register-alert-address").innerHTML =
+    document.getElementById("register-alert-lastname").innerHTML =
       errorArr.join("<br>");
-    addressOk = false;
+    lastNameOk = false;
   }
   checkIfCanEnableBtn();
 };
 
 const checkIfCanEnableBtn = () =>
   (btnRegister.disabled = !(
-    nameOk &&
+    firstNameOk &&
     emailOk &&
     passwordOk &&
-    phoneOk &&
-    addressOk
+    repeatPasswordOk &&
+    lastNameOk
   ));
 
 btnRegister.addEventListener("click", () => {
-  if (!(nameOk && emailOk && passwordOk && phoneOk && addressOk)) {
+  if (
+    !(firstNameOk && emailOk && passwordOk && repeatPasswordOk && lastNameOk)
+  ) {
     //if someone changed the html from dev tools
     return;
   }
@@ -171,11 +187,11 @@ btnRegister.addEventListener("click", () => {
   nextUserId = +nextUserId;
   let newUser = new User(
     nextUserId++,
-    inputName.value,
+    inputFirstName.value,
     inputEmail.value,
     inputPassword.value,
-    inputPhone.value,
-    inputAddress.value
+    inputRepeatPassword.value,
+    inputLastName.value
   );
   localStorage.setItem("nextUserId", nextUserId + "");
   if (!users) {
