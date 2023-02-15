@@ -4,8 +4,6 @@ import validateName from "../validation/validateName.js";
 
 import showToast from "../services/Toast.js";
 
-const inputName = document.getElementById("profile-input-Name");
-
 const inputFirstName = document.getElementById("profile-input-firstName");
 const inputLastName = document.getElementById("profile-input-lastName");
 const inputState = document.getElementById("profile-input-state");
@@ -17,9 +15,6 @@ const inputZip = document.getElementById("profile-input-zip");
 const inputEmail = document.getElementById("profile-input-email");
 const inputPhone = document.getElementById("profile-input-phone");
 const inputPassword = document.getElementById("profile-input-password");
-const inputRepeatPassword = document.getElementById(
-  "profile-input-repeatPassword"
-);
 
 let firstNameDisplay = document.getElementById("profile-firstName-display");
 let lastNameDisplay = document.getElementById("profile-lastName-display");
@@ -83,30 +78,17 @@ window.addEventListener("load", () => {
   editProfileBtn.addEventListener("click", () => {
     inEdit = true;
     if (inEdit) {
-      // document.querySelectorAll('[title^="input"]').classList.remove("d-none");
-      inputFirstName.classList.remove("d-none");
-      inputLastName.classList.remove("d-none");
-      inputState.classList.remove("d-none");
-      inputCountry.classList.remove("d-none");
-      inputCity.classList.remove("d-none");
-      inputStreet.classList.remove("d-none");
-      inputHouseNum.classList.remove("d-none");
-      inputZip.classList.remove("d-none");
-      inputEmail.classList.remove("d-none");
-      inputPhone.classList.remove("d-none");
-      inputPassword.classList.remove("d-none");
+      let inputs = document.querySelectorAll('[id^="profile-input"]');
 
-      firstNameDisplay.classList.add("d-none");
-      lastNameDisplay.classList.add("d-none");
-      stateDisplay.classList.add("d-none");
-      countryDisplay.classList.add("d-none");
-      cityDisplay.classList.add("d-none");
-      streetDisplay.classList.add("d-none");
-      houseNumDisplay.classList.add("d-none");
-      zipDisplay.classList.add("d-none");
-      emailDisplay.classList.add("d-none");
-      phoneDisplay.classList.add("d-none");
-      passwordDisplay.classList.add("d-none");
+      inputs.forEach((input) => {
+        input.classList.remove("d-none");
+      });
+
+      let displays = document.querySelectorAll('[id$="display"]');
+
+      displays.forEach((display) => {
+        display.classList.remove("d-none");
+      });
 
       editProfileBtn.classList.add("d-none");
       saveProfileBtn.classList.remove("d-none");
@@ -115,29 +97,17 @@ window.addEventListener("load", () => {
     cancelProfileBtn.addEventListener("click", () => {
       inEdit = false;
       if (!inEdit) {
-        inputFirstName.classList.add("d-none");
-        inputLastName.classList.add("d-none");
-        inputState.classList.add("d-none");
-        inputCountry.classList.add("d-none");
-        inputCity.classList.add("d-none");
-        inputStreet.classList.add("d-none");
-        inputHouseNum.classList.add("d-none");
-        inputZip.classList.add("d-none");
-        inputEmail.classList.add("d-none");
-        inputPhone.classList.add("d-none");
-        inputPassword.classList.add("d-none");
+        let inputs = document.querySelectorAll('[id^="profile-input"]');
 
-        firstNameDisplay.classList.remove("d-none");
-        lastNameDisplay.classList.remove("d-none");
-        stateDisplay.classList.remove("d-none");
-        countryDisplay.classList.remove("d-none");
-        cityDisplay.classList.remove("d-none");
-        streetDisplay.classList.remove("d-none");
-        houseNumDisplay.classList.remove("d-none");
-        zipDisplay.classList.remove("d-none");
-        emailDisplay.classList.remove("d-none");
-        phoneDisplay.classList.remove("d-none");
-        passwordDisplay.classList.remove("d-none");
+        inputs.forEach((input) => {
+          input.classList.add("d-none");
+        });
+
+        let displays = document.querySelectorAll('[id$="display"]');
+
+        displays.forEach((display) => {
+          display.classList.add("d-none");
+        });
 
         editProfileBtn.classList.remove("d-none");
         saveProfileBtn.classList.add("d-none");
