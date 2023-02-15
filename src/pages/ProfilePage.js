@@ -6,27 +6,44 @@ import showToast from "../services/Toast.js";
 
 const inputName = document.getElementById("profile-input-Name");
 
+const inputFirstName = document.getElementById("profile-input-firstName");
+const inputLastName = document.getElementById("profile-input-lastName");
+const inputState = document.getElementById("profile-input-state");
+const inputCountry = document.getElementById("profile-input-country");
+const inputCity = document.getElementById("profile-input-city");
+const inputStreet = document.getElementById("profile-input-street");
+const inputHouseNum = document.getElementById("profile-input-houseNumber");
+const inputZip = document.getElementById("profile-input-zip");
 const inputEmail = document.getElementById("profile-input-email");
 const inputPhone = document.getElementById("profile-input-phone");
-const inputAddress = document.getElementById("profile-input-address");
 const inputPassword = document.getElementById("profile-input-password");
-const saveProfileBtn = document.querySelector("#profile-save-btn");
-const editProfileBtn = document.getElementById("profile-edit-btn");
-const cancelProfileBtn = document.getElementById("profile-cancel-btn");
+const inputRepeatPassword = document.getElementById(
+  "profile-input-repeatPassword"
+);
 
-let nameDisplay = document.getElementById("profile-name-display");
+let firstNameDisplay = document.getElementById("profile-firstName-display");
+let lastNameDisplay = document.getElementById("profile-lastName-display");
+let stateDisplay = document.getElementById("profile-state-display");
+let countryDisplay = document.getElementById("profile-country-display");
+let cityDisplay = document.getElementById("profile-city-display");
+let streetDisplay = document.getElementById("profile-street-display");
+let houseNumDisplay = document.getElementById("profile-houseNum-display");
+let zipDisplay = document.getElementById("profile-zip-display");
 let emailDisplay = document.getElementById("profile-email-display");
 let phoneDisplay = document.getElementById("profile-phone-display");
-let addressDisplay = document.getElementById("profile-address-display");
 let passwordDisplay = document.getElementById("profile-password-display");
+
+let editProfileBtn = document.getElementById("profile-edit-btn");
+let saveProfileBtn = document.getElementById("profile-save-btn");
+let cancelProfileBtn = document.getElementById("profile-cancel-btn");
 
 let inEdit = false;
 
-let nameOk = false;
-let emailOk = false;
-let phoneOk = false;
-let addressOk = false;
+let firstNameOk = false;
+let lastNameOk = false;
 let passwordOk = false;
+let repeatPasswordOk = false;
+let emailOk = false;
 
 window.addEventListener("load", () => {
   let users = localStorage.getItem("users");
@@ -38,31 +55,59 @@ window.addEventListener("load", () => {
     token = JSON.parse(token);
     let user = users.find((item) => item.id === token.id);
     if (user) {
-      nameDisplay.innerHTML = user.name;
+      firstNameDisplay.innerHTML = user.firstName;
+      lastNameDisplay.innerHTML = user.lastName;
+      stateDisplay.innerHTML = user.state;
+      countryDisplay.innerHTML = user.country;
+      cityDisplay.innerHTML = user.city;
+      streetDisplay.innerHTML = user.street;
+      houseNumDisplay.innerHTML = user.houseNum;
+      zipDisplay.innerHTML = user.zip;
       emailDisplay.innerHTML = user.email;
       phoneDisplay.innerHTML = user.phone;
-      addressDisplay.innerHTML = user.address;
       passwordDisplay.innerHTML = user.password;
-      inputName.value = user.name;
+
+      inputFirstName.value = user.firstName;
+      inputLastName.value = user.lastName;
+      inputState.value = user.state;
+      inputCountry.value = user.county;
+      inputCity.value = user.city;
+      inputStreet.value = user.street;
+      inputHouseNum.value = user.houseNum;
+      inputZip.value = user.zip;
       inputEmail.value = user.email;
       inputPhone.value = user.phone;
-      inputAddress.value = user.address;
       inputPassword.value = user.password;
     }
   }
   editProfileBtn.addEventListener("click", () => {
     inEdit = true;
     if (inEdit) {
-      inputName.classList.remove("d-none");
+      // document.querySelectorAll('[title^="input"]').classList.remove("d-none");
+      inputFirstName.classList.remove("d-none");
+      inputLastName.classList.remove("d-none");
+      inputState.classList.remove("d-none");
+      inputCountry.classList.remove("d-none");
+      inputCity.classList.remove("d-none");
+      inputStreet.classList.remove("d-none");
+      inputHouseNum.classList.remove("d-none");
+      inputZip.classList.remove("d-none");
       inputEmail.classList.remove("d-none");
       inputPhone.classList.remove("d-none");
-      inputAddress.classList.remove("d-none");
       inputPassword.classList.remove("d-none");
-      nameDisplay.classList.add("d-none");
+
+      firstNameDisplay.classList.add("d-none");
+      lastNameDisplay.classList.add("d-none");
+      stateDisplay.classList.add("d-none");
+      countryDisplay.classList.add("d-none");
+      cityDisplay.classList.add("d-none");
+      streetDisplay.classList.add("d-none");
+      houseNumDisplay.classList.add("d-none");
+      zipDisplay.classList.add("d-none");
       emailDisplay.classList.add("d-none");
       phoneDisplay.classList.add("d-none");
-      addressDisplay.classList.add("d-none");
       passwordDisplay.classList.add("d-none");
+
       editProfileBtn.classList.add("d-none");
       saveProfileBtn.classList.remove("d-none");
       cancelProfileBtn.classList.remove("d-none");
@@ -70,16 +115,30 @@ window.addEventListener("load", () => {
     cancelProfileBtn.addEventListener("click", () => {
       inEdit = false;
       if (!inEdit) {
-        inputName.classList.add("d-none");
+        inputFirstName.classList.add("d-none");
+        inputLastName.classList.add("d-none");
+        inputState.classList.add("d-none");
+        inputCountry.classList.add("d-none");
+        inputCity.classList.add("d-none");
+        inputStreet.classList.add("d-none");
+        inputHouseNum.classList.add("d-none");
+        inputZip.classList.add("d-none");
         inputEmail.classList.add("d-none");
         inputPhone.classList.add("d-none");
-        inputAddress.classList.add("d-none");
         inputPassword.classList.add("d-none");
-        nameDisplay.classList.remove("d-none");
+
+        firstNameDisplay.classList.remove("d-none");
+        lastNameDisplay.classList.remove("d-none");
+        stateDisplay.classList.remove("d-none");
+        countryDisplay.classList.remove("d-none");
+        cityDisplay.classList.remove("d-none");
+        streetDisplay.classList.remove("d-none");
+        houseNumDisplay.classList.remove("d-none");
+        zipDisplay.classList.remove("d-none");
         emailDisplay.classList.remove("d-none");
         phoneDisplay.classList.remove("d-none");
-        addressDisplay.classList.remove("d-none");
         passwordDisplay.classList.remove("d-none");
+
         editProfileBtn.classList.remove("d-none");
         saveProfileBtn.classList.add("d-none");
         cancelProfileBtn.classList.add("d-none");
@@ -87,56 +146,54 @@ window.addEventListener("load", () => {
     });
   });
   //when page loaded
-  if (inputName.value !== "") {
-    checkNameInput();
+  if (inputFirstName.value !== "") {
+    checkFirstNameInput();
   }
   if (inputEmail.value !== "") {
     checkEmailInput();
   }
-  if (inputPhone.value !== "") {
-    checkPhoneInput();
-  }
-  if (inputAddress.value !== "") {
-    checkAddressInput();
-  }
   if (inputPassword.value !== "") {
     checkPasswordInput();
   }
+
+  if (inputLastName.value !== "") {
+    checkLastNameInput();
+  }
 });
 
-inputName.addEventListener("input", () => {
-  checkNameInput();
+inputFirstName.addEventListener("input", () => {
+  checkFirstNameInput();
+});
+
+inputLastName.addEventListener("input", () => {
+  checkLastNameInput();
 });
 
 inputEmail.addEventListener("input", () => {
   checkEmailInput();
-});
-inputEmail.addEventListener("input", () => {
-  checkPhoneInput();
-});
-inputEmail.addEventListener("input", () => {
-  checkAddressInput();
 });
 
 inputPassword.addEventListener("input", () => {
   checkPasswordInput();
 });
 
-const checkNameInput = () => {
-  let errorArr = validateName(inputName.value);
+const checkFirstNameInput = () => {
+  let errorArr = validateName(inputFirstName.value);
   //   console.log(reg.test(inputName.value));
   if (errorArr.length === 0) {
     //the text is ok
-    inputName.classList.remove("is-invalid");
-    document.getElementById("profile-alert-name").classList.add("d-none");
-    nameOk = true;
+    inputFirstName.classList.remove("is-invalid");
+    document.getElementById("profile-alert-firstName").classList.add("d-none");
+    firstNameOk = true;
   } else {
     //the text is not ok
-    inputName.classList.add("is-invalid");
-    document.getElementById("profile-alert-name").classList.remove("d-none");
-    document.getElementById("profile-alert-name").innerHTML =
+    inputFirstName.classList.add("is-invalid");
+    document
+      .getElementById("profile-alert-firstName")
+      .classList.remove("d-none");
+    document.getElementById("profile-alert-firstName").innerHTML =
       errorArr.join("<br>");
-    nameOk = false;
+    firstNameOk = false;
   }
   checkIfCanEnableBtn();
 };
@@ -155,42 +212,6 @@ const checkEmailInput = () => {
     document.getElementById("profile-alert-email").innerHTML =
       errorArr.join("<br>");
     emailOk = false;
-  }
-  checkIfCanEnableBtn();
-};
-const checkPhoneInput = () => {
-  let errorArr = validatePhone(inputPhone.value);
-  if (errorArr.length === 0) {
-    //the text is ok
-    inputPhone.classList.remove("is-invalid");
-    document.getElementById("register-alert-phone").classList.add("d-none");
-    phoneOk = true;
-  } else {
-    //the text is not ok
-    inputPhone.classList.add("is-invalid");
-    document.getElementById("register-alert-phone").classList.remove("d-none");
-    document.getElementById("register-alert-phone").innerHTML =
-      errorArr.join("<br>");
-    phoneOk = false;
-  }
-  checkIfCanEnableBtn();
-};
-const checkAddressInput = () => {
-  let errorArr = validateAddress(inputAddress.value);
-  if (errorArr.length === 0) {
-    //the text is ok
-    inputAddress.classList.remove("is-invalid");
-    document.getElementById("register-alert-address").classList.add("d-none");
-    addressOk = true;
-  } else {
-    //the text is not ok
-    inputAddress.classList.add("is-invalid");
-    document
-      .getElementById("register-alert-address")
-      .classList.remove("d-none");
-    document.getElementById("register-alert-address").innerHTML =
-      errorArr.join("<br>");
-    addressOk = false;
   }
   checkIfCanEnableBtn();
 };
@@ -215,17 +236,36 @@ const checkPasswordInput = () => {
   checkIfCanEnableBtn();
 };
 
+const checkLastNameInput = () => {
+  let errorArr = validateName(inputLastName.value);
+  if (errorArr.length === 0) {
+    //the text is ok
+    inputLastName.classList.remove("is-invalid");
+    document.getElementById("profile-alert-lastName").classList.add("d-none");
+    lastNameOk = true;
+  } else {
+    //the text is not ok
+    inputLastName.classList.add("is-invalid");
+    document
+      .getElementById("profile-alert-lastName")
+      .classList.remove("d-none");
+    document.getElementById("profile-alert-lastName").innerHTML =
+      errorArr.join("<br>");
+    lastNameOk = false;
+  }
+  checkIfCanEnableBtn();
+};
+
 const checkIfCanEnableBtn = () =>
   (saveProfileBtn.disabled = !(
-    nameOk &&
+    firstNameOk &&
     emailOk &&
     passwordOk &&
-    phoneOk &&
-    addressOk
+    lastNameOk
   ));
 
 saveProfileBtn.addEventListener("click", () => {
-  if (!(nameOk && emailOk && passwordOk && phoneOk && addressOk)) {
+  if (!(firstNameOk && emailOk && passwordOk && lastNameOk)) {
     //if someone changed the html from dev tools
     return;
   }
@@ -243,11 +283,11 @@ saveProfileBtn.addEventListener("click", () => {
       return;
     }
     if (user) {
-      user.name = token.name = inputName.value;
+      user.firstName = token.firstName = inputFirstName.value;
+      user.lastName = token.lastName = inputLasttName.value;
       user.email = token.email = inputEmail.value;
       user.password = inputPassword.value;
-      user.phone = inputPhone.value;
-      user.address = inputAddress.value;
+
       localStorage.setItem("users", JSON.stringify(users));
       localStorage.setItem("token", JSON.stringify(token));
       showToast("Saved");
