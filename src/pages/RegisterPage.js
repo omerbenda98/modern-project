@@ -22,6 +22,7 @@ const inputRepeatPassword = document.getElementById(
   "register-input-repeatPassword"
 );
 const btnRegister = document.querySelector("#register-save-btn");
+const adminCheckbox = document.getElementById("adminCheckBox");
 
 let firstNameOk = false;
 let lastNameOk = false;
@@ -201,6 +202,7 @@ btnRegister.addEventListener("click", () => {
     inputPassword.value
   );
   localStorage.setItem("nextUserId", nextUserId + "");
+
   if (!users) {
     //the first user
     users = [newUser];
