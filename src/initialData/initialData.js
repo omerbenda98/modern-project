@@ -58,13 +58,13 @@ const createData = () => {
   return propertiesArr;
 };
 
-const createUserData = () => {
-  let intitialUsersArr = [
-    new User("1", "Omer", "omerbenda98@gmail.com", "Omerbenda98!"),
-    new User("2", "Benda", "benda98@gmail.com", "Omerbenda98!"),
-  ];
-  return intitialUsersArr;
-};
+// const createUserData = () => {
+//   let intitialUsersArr = [
+//     new User("1", "Omer", "omerbenda98@gmail.com", "Omerbenda98!"),
+//     new User("2", "Benda", "benda98@gmail.com", "Omerbenda98!"),
+//   ];
+//   return intitialUsersArr;
+// };
 
 const setInitialData = () => {
   let properties = localStorage.getItem("props");
@@ -73,7 +73,7 @@ const setInitialData = () => {
     return;
   }
   localStorage.setItem("props", JSON.stringify(createData()));
-  localStorage.setItem("users", JSON.stringify(createUserData()));
+  // localStorage.setItem("users", JSON.stringify(createUserData()));
   localStorage.setItem("nextid", id + "");
 };
 

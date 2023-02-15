@@ -19,9 +19,9 @@ const inputEmail = document.getElementById("register-input-email");
 const inputPhone = document.getElementById("register-input-phone");
 const inputPassword = document.getElementById("register-input-password");
 const inputRepeatPassword = document.getElementById(
-  "register-input-repeatPassowrd"
+  "register-input-repeatPassword"
 );
-const btnRegister = document.querySelector("#register-btn");
+const btnRegister = document.querySelector("#register-save-btn");
 
 let firstNameOk = false;
 let lastNameOk = false;
@@ -74,15 +74,15 @@ const checkFirstNameInput = () => {
   if (errorArr.length === 0) {
     //the text is ok
     inputFirstName.classList.remove("is-invalid");
-    document.getElementById("register-alert-firstname").classList.add("d-none");
+    document.getElementById("register-alert-firstName").classList.add("d-none");
     firstNameOk = true;
   } else {
     //the text is not ok
     inputFirstName.classList.add("is-invalid");
     document
-      .getElementById("register-alert-firstname")
+      .getElementById("register-alert-firstName")
       .classList.remove("d-none");
-    document.getElementById("register-alert-firstname").innerHTML =
+    document.getElementById("register-alert-firstName").innerHTML =
       errorArr.join("<br>");
     firstNameOk = false;
   }
@@ -127,6 +127,7 @@ const checkPasswordInput = () => {
   checkIfCanEnableBtn();
 };
 const checkRepeatPasswordInput = () => {
+  let errorArr = validatePassword(inputPassword.value);
   if (inputRepeatPassword.value === inputPassword.value) {
     //the text is ok
     inputRepeatPassword.classList.remove("is-invalid");
@@ -142,7 +143,7 @@ const checkRepeatPasswordInput = () => {
       .classList.remove("d-none");
     document.getElementById("register-alert-repeatPassword").innerHTML =
       errorArr.join("<br>");
-    phoneOk = false;
+    repeatPasswordOk = false;
   }
   checkIfCanEnableBtn();
 };
@@ -151,15 +152,15 @@ const checkLastNameInput = () => {
   if (errorArr.length === 0) {
     //the text is ok
     inputLastName.classList.remove("is-invalid");
-    document.getElementById("register-alert-lastname").classList.add("d-none");
-    LastNameOk = true;
+    document.getElementById("register-alert-lastName").classList.add("d-none");
+    lastNameOk = true;
   } else {
     //the text is not ok
     inputLastName.classList.add("is-invalid");
     document
-      .getElementById("register-alert-lastname")
+      .getElementById("register-alert-lastName")
       .classList.remove("d-none");
-    document.getElementById("register-alert-lastname").innerHTML =
+    document.getElementById("register-alert-lastName").innerHTML =
       errorArr.join("<br>");
     lastNameOk = false;
   }
@@ -188,10 +189,16 @@ btnRegister.addEventListener("click", () => {
   let newUser = new User(
     nextUserId++,
     inputFirstName.value,
+    inputLastName.value,
+    inputState.value,
+    inputCountry.value,
+    inputCity.value,
+    inputStreet.value,
+    inputHouseNum.value,
+    inputZip.value,
     inputEmail.value,
-    inputPassword.value,
-    inputRepeatPassword.value,
-    inputLastName.value
+    inputPhone.value,
+    inputPassword.value
   );
   localStorage.setItem("nextUserId", nextUserId + "");
   if (!users) {

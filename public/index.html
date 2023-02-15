@@ -298,6 +298,13 @@
                                 <label for="register-input-firstName"
                                   >First Name</label
                                 >
+                                <div
+                                  class="alert alert-danger d-none"
+                                  role="alert"
+                                  id="register-alert-firstName"
+                                >
+                                  First name rules
+                                </div>
                               </div>
                             </div>
                             <div class="col-md-6 mb-4">
@@ -311,6 +318,13 @@
                                 <label for="register-input-lastName"
                                   >Last Name</label
                                 >
+                                <div
+                                  class="alert alert-danger d-none"
+                                  role="alert"
+                                  id="register-alert-lastName"
+                                >
+                                  Last name rules
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -404,6 +418,13 @@
                               placeholder="Email Address"
                             />
                             <label for="register-input-email">Email</label>
+                            <div
+                              class="alert alert-danger d-none"
+                              role="alert"
+                              id="register-alert-email"
+                            >
+                              Email rules
+                            </div>
                           </div>
 
                           <div class="form-outline mb-4">
@@ -418,7 +439,7 @@
                           <h6>Security</h6>
                           <div class="form-outline mb-4">
                             <input
-                              type="text"
+                              type="password"
                               id="register-input-password"
                               class="form-control"
                               placeholder="Password"
@@ -428,11 +449,18 @@
                               for="register-input-password"
                               >Password</label
                             >
+                            <div
+                              class="alert alert-danger d-none"
+                              role="alert"
+                              id="register-alert-password"
+                            >
+                              Password rules
+                            </div>
                           </div>
 
                           <div class="form-outline mb-4">
                             <input
-                              type="text"
+                              type="password"
                               id="register-input-repeatPassword"
                               class="form-control"
                               placeholder="Repeat Password"
@@ -442,6 +470,13 @@
                               for="register-input-repeatPassword"
                               >Repeat password</label
                             >
+                            <div
+                              class="alert alert-danger d-none"
+                              role="alert"
+                              id="register-alert-repeatPassword"
+                            >
+                              Password rules
+                            </div>
                           </div>
 
                           <div class="d-flex justify-content-end pt-3">
@@ -450,6 +485,7 @@
                             </button>
                             <button
                               type="button"
+                              id="register-save-btn"
                               class="btn btn-warning btn-lg ms-2"
                             >
                               Submit form

@@ -1,17 +1,44 @@
 class User {
   id;
-  name;
+  firstName;
+  lastName;
+  state;
+  country;
+  city;
+  street;
+  houseNum;
+  zip;
   email;
   password;
   phone;
-  address;
   isAdmin;
-  constructor(id, name, email, password, phone, address) {
-    this.name = name;
+
+  constructor(
+    id,
+    firstName,
+    lastName,
+    state,
+    country,
+    city,
+    street,
+    houseNum,
+    zip,
+    email,
+    phone,
+    password
+  ) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.state = state;
+    this.country = country;
+    this.city = city;
+    this.street = street;
+    this.houseNum = houseNum;
+    this.zip = zip;
     this.email = email;
-    this.password = password;
     this.phone = phone;
-    this.address = address;
+    this.password = password;
+
     this.isAdmin = false;
     this.id = id;
   }
