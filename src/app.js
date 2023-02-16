@@ -24,7 +24,7 @@ window.addEventListener("load", () => {
   if (checkIfConnected()) {
     let user = localStorage.getItem("token");
     user = JSON.parse(user);
-    navEditProfilePage.innerText = user.name;
+    navEditProfilePage.innerText = user.firstName;
   }
 });
 
