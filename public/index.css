@@ -66,3 +66,7 @@
 .card-registration .select-arrow {
   top: 13px;
 }
+
+label [id^="profile"] {
+  font-size: 200px;
+}

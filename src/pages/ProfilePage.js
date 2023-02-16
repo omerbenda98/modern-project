@@ -87,7 +87,7 @@ window.addEventListener("load", () => {
       let displays = document.querySelectorAll('[id$="display"]');
 
       displays.forEach((display) => {
-        display.classList.remove("d-none");
+        display.classList.add("d-none");
       });
 
       editProfileBtn.classList.add("d-none");
@@ -106,7 +106,7 @@ window.addEventListener("load", () => {
         let displays = document.querySelectorAll('[id$="display"]');
 
         displays.forEach((display) => {
-          display.classList.add("d-none");
+          display.classList.remove("d-none");
         });
 
         editProfileBtn.classList.remove("d-none");
@@ -254,9 +254,16 @@ saveProfileBtn.addEventListener("click", () => {
     }
     if (user) {
       user.firstName = token.firstName = inputFirstName.value;
-      user.lastName = token.lastName = inputLasttName.value;
+      user.lastName = token.lastName = inputLastName.value;
       user.email = token.email = inputEmail.value;
       user.password = inputPassword.value;
+      user.state = inputState.value;
+      user.country = inputCountry.value;
+      user.city = inputCity.value;
+      user.street = inputStreet.value;
+      user.houseNum = inputHouseNum.value;
+      user.zip = inputZip.value;
+      user.phone = inputPhone.value;
 
       localStorage.setItem("users", JSON.stringify(users));
       localStorage.setItem("token", JSON.stringify(token));
