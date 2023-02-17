@@ -27,30 +27,6 @@ const createData = () => {
       `Experience the awe-inspiring beauty of Iceland with our incredible flight deals! From the dramatic landscapes of the Golden Circle to the breathtaking Northern Lights, Iceland is a destination unlike any other. And now, with our unbeatable prices on flights, you can experience this natural wonderland without breaking the bank. So whether you're seeking adventure or relaxation, our flights to Iceland are the perfect way to get there. Book now and get ready to discover the magic of Iceland!`,
       "./assets/imgs/homepageCarouselImg3.jpg"
     ),
-    new Property(
-      id++,
-      "John's raft",
-      9.9,
-      `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id quasi ea culpa magnam enim soluta, totam, illum maiores, incidunt in quo natus eius sint. Alias nihil nobis dolor id cumque!
-        Tempore tempora, et delectus dicta mollitia quo natus magnam vero aliquam quisquam! Nam expedita labore reprehenderit omnis eum. Aliquid neque suscipit reiciendis, sequi soluta illum quae at laborum quasi voluptatum.`,
-      "./assets/imgs/4.jpg"
-    ),
-    new Property(
-      id++,
-      "John's pie",
-      3.14,
-      `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id quasi ea culpa magnam enim soluta, totam, illum maiores, incidunt in quo natus eius sint. Alias nihil nobis dolor id cumque!
-        Tempore tempora, et delectus dicta mollitia quo natus magnam vero aliquam quisquam! Nam expedita labore reprehenderit omnis eum. Aliquid neque suscipit reiciendis, sequi soluta illum quae at laborum quasi voluptatum.`,
-      "./assets/imgs/5.jpg"
-    ),
-    new Property(
-      id++,
-      "Kart's dream house",
-      2.5,
-      `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id quasi ea culpa magnam enim soluta, totam, illum maiores, incidunt in quo natus eius sint. Alias nihil nobis dolor id cumque!
-        Tempore tempora, et delectus dicta mollitia quo natus magnam vero aliquam quisquam! Nam expedita labore reprehenderit omnis eum. Aliquid neque suscipit reiciendis, sequi soluta illum quae at laborum quasi voluptatum.`,
-      "./assets/imgs/6.jpg"
-    ),
   ];
   return propertiesArr;
 };
@@ -66,7 +42,7 @@ const createData = () => {
 const setInitialData = () => {
   let properties = localStorage.getItem("props");
   let users = localStorage.getItem("users");
-  if (properties || users) {
+  if (properties && users) {
     return;
   }
   localStorage.setItem("props", JSON.stringify(createData()));

@@ -3,17 +3,20 @@ let listDiv;
 let isAdmin;
 let deleteProperty;
 let showPopup;
+let seeMore;
 //this function will transfer data from homepage to this page
 const initialPropertiesList = (
   propertiesArrFromHomePage,
   isAdminParam,
   deletePropertyFromHomePage,
-  showPopupFromHomePage
+  showPopupFromHomePage,
+  seeMoreFromHomePage
 ) => {
   listDiv = document.getElementById("home-page-properties-list");
   isAdmin = isAdminParam;
   deleteProperty = deletePropertyFromHomePage;
   showPopup = showPopupFromHomePage;
+  seeMore = seeMoreFromHomePage;
   updatePropertiesList(propertiesArrFromHomePage);
 };
 
@@ -54,8 +57,8 @@ const createItem = (name, description, price, img, id) => {
         </div>
         </div>
         <div class="col-md-2">
-        <button type="button" class="btn btn-success w-100">
-          <i class="bi bi-currency-dollar"></i> Buy now
+        <button type="button" class="btn btn-success w-100" id="listSeeMoreBtn-${id}">
+          <i class="bi bi-currency-dollar"></i>See More
         </button>
         ${isAdmin ? adminBtns : ""}
         </div>
@@ -83,6 +86,9 @@ const handleDeleteBtnClick = (ev) => {
 const handleEditBtnClick = (ev) => {
   showPopup(getIdFromClick(ev));
 };
+const handleShowMoreBtnClick = (ev) => {
+  seeMore(getIdFromClick(ev));
+};
 
 const clearEventListeners = (idKeyword, handleFunction) => {
   //get all old btns
@@ -99,6 +105,7 @@ const createList = () => {
   clearEventListeners("propertyListDeleteBtn", handleDeleteBtnClick);
   //clear event listeners for edit btns
   clearEventListeners("propertyListEditBtn", handleEditBtnClick);
+  clearEventListeners("listSeeMoreBtn", handleShowMoreBtnClick);
 
   //create new elements and remove old ones
   for (let property of propertiesArr) {
@@ -115,6 +122,7 @@ const createList = () => {
   createBtnEventListener("propertyListDeleteBtn", handleDeleteBtnClick);
   // add event listeners for edit btns
   createBtnEventListener("propertyListEditBtn", handleEditBtnClick);
+  createBtnEventListener("listSeeMoreBtn", handleShowMoreBtnClick);
 };
 
 //Creates event listener for the delete buttons

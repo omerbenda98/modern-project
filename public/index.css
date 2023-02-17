@@ -43,6 +43,19 @@
 .popup-wrapper div div {
   width: 100%;
 }
+.seeMore-wrapper {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: #0000008d;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+.seeMore-wrapper div div {
+  width: 100%;
+}
 
 /* .responsive-mt {
   margin-top: 0.9rem;

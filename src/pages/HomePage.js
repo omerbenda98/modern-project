@@ -11,6 +11,7 @@ import {
   updatePropertiesCarousel,
 } from "../components/PropertiesCarousel.js";
 import { initPopup } from "../components/Popup.js";
+import { initSeeMore } from "../components/SeeMore.js";
 import checkIfAdmin from "../utils/checkIfAdmin.js";
 
 let propertiesArr, originalPropertiesArr;
@@ -37,7 +38,13 @@ window.addEventListener("load", () => {
   isAdmin = checkIfAdmin();
   //passing propertiesArr to PropertiesGallery.js
   initialPropertiesGallery(propertiesArr);
-  initialPropertiesList(propertiesArr, isAdmin, deleteProperty, showPopup);
+  initialPropertiesList(
+    propertiesArr,
+    isAdmin,
+    deleteProperty,
+    showPopup,
+    seeMore
+  );
   initialPropertiesCarousel(propertiesArr);
   initializeElements();
   initializeBtns();
@@ -129,6 +136,14 @@ const sortPropertys = (asc = true) => {
     propertiesArr.sort((a, b) => b.name.localeCompare(a.name));
   }
   updateDisplays();
+};
+const seeMore = (id) => {
+  let selectedProperty = propertiesArr.find((item) => item.id === +id);
+  if (!selectedProperty) {
+    return;
+  }
+  initSeeMore(selectedProperty);
+  console.log(selectedProperty);
 };
 
 const showPopup = (id) => {
