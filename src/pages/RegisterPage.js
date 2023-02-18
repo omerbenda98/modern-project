@@ -22,7 +22,6 @@ const inputRepeatPassword = document.getElementById(
   "register-input-repeatPassword"
 );
 const btnRegister = document.querySelector("#register-save-btn");
-const adminCheckbox = document.getElementById("adminCheckBox");
 
 let firstNameOk = false;
 let lastNameOk = false;
@@ -184,6 +183,7 @@ btnRegister.addEventListener("click", () => {
     //if someone changed the html from dev tools
     return;
   }
+  const adminCheckbox = document.getElementById("adminCheckBox").checked;
   let users = localStorage.getItem("users");
   let nextUserId = localStorage.getItem("nextUserId");
   nextUserId = +nextUserId;
@@ -199,8 +199,10 @@ btnRegister.addEventListener("click", () => {
     inputZip.value,
     inputEmail.value,
     inputPhone.value,
-    inputPassword.value
+    inputPassword.value,
+    adminCheckbox
   );
+
   localStorage.setItem("nextUserId", nextUserId + "");
 
   if (!users) {

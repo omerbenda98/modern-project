@@ -25,7 +25,8 @@ class User {
     zip,
     email,
     phone,
-    password
+    password,
+    isAdmin
   ) {
     this.firstName = firstName;
     this.lastName = lastName;
@@ -39,7 +40,7 @@ class User {
     this.phone = phone;
     this.password = password;
 
-    this.isAdmin = false;
+    this.isAdmin = isAdmin;
     this.id = id;
   }
 }
