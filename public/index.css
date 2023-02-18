@@ -54,8 +54,16 @@
 }
 
 .seeMore-wrapper div div {
-  width: 100%;
+  width: 25vw;
+  padding: 0;
 }
+/* .card-text {
+  padding: 0;
+} */
+/* .seeMore-wrapper div div img {
+  width: 100%;
+  height: 100%;
+} */
 
 /* .responsive-mt {
   margin-top: 0.9rem;

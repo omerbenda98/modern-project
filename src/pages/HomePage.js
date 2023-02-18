@@ -142,8 +142,9 @@ const seeMore = (id) => {
   if (!selectedProperty) {
     return;
   }
+  console.log({ selectedProperty });
+
   initSeeMore(selectedProperty);
-  console.log(selectedProperty);
 };
 
 const showPopup = (id) => {

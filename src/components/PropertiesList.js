@@ -58,7 +58,7 @@ const createItem = (name, description, price, img, id) => {
         </div>
         <div class="col-md-2">
         <button type="button" class="btn btn-success w-100" id="listSeeMoreBtn-${id}">
-          <i class="bi bi-currency-dollar"></i>See More
+          See More<br/><i class="bi bi-arrow-right"></i>
         </button>
         ${isAdmin ? adminBtns : ""}
         </div>
