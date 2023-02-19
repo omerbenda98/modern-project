@@ -37,7 +37,6 @@ let inEdit = false;
 let firstNameOk = false;
 let lastNameOk = false;
 let passwordOk = false;
-let repeatPasswordOk = false;
 let emailOk = false;
 
 window.addEventListener("load", () => {

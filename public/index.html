@@ -22,6 +22,7 @@
     />
     <link rel="stylesheet" href="index.css" />
     <link rel="stylesheet" href="toast.css" />
+    <link rel="stylesheet" href="about.css" />
   </head>
   <body>
     <div class="container">
@@ -95,7 +96,7 @@
       <div id="toast"></div>
       <main>
         <!-- home page -->
-        <div id="home-page" class="d-block">
+        <div id="home-page" class="d-none">
           <h1>Home page</h1>
           <div
             class="popup-wrapper d-flex justify-content-center align-items-center d-none"
@@ -309,8 +310,56 @@
           </div>
         </div>
         <!-- about us -->
-        <div id="about-us" class="d-none">
+        <div id="about-us" class="d-block">
           <h1>About us</h1>
+          <div class="about-section">
+  <h1>About Us Page</h1>
+  <p>Some text about who we are and what we do.</p>
+  <p>Resize the browser window to see that this page is responsive by the way.</p>
+</div>
+
+<h2 style="text-align:center">Our Team</h2>
+<div class="row">
+  <div class="column">
+    <div class="card">
+      <img src="./assets/imgs/homepageCarouselImg.jpg" alt="Jane" style="width:100%">
+      <div class="container">
+        <h2>Display Modes</h2>
+        <p class="title">List, Gallery and Carousel</p>
+        <p>Our homepage features three different display modes - list, gallery and carousel - allowing you to choose your preferred view of the available flights. You can filter your search results by using the the search bar in the top right corner. Also, </p>
+        <p>business clients can edit,delete and add flights</p>
+        <p><button class="button" id="about-us-display-btn">VIEW DISPLAY MODES</button></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <img src="./assets/imgs/homepageCarouselImg2.jpg" alt="Mike" style="width:100%">
+      <div class="container">
+        <h2>Registration and Login Page</h2>
+        <p class="title"></p>
+        <p>Our registration form is simple and easy to use, requiring only your basic personal information and contact details.
+Once you have registered, you can log in to your account using our login page. </p>
+        <p>in the Registration page you have the option to register as a business client</p>
+        <p><button class="button" id="about-us-register-btn">GO TO REGISTER PAGE</button></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <img src="./assets/imgs/homepageCarouselImg3.jpg" alt="John" style="width:100%">
+      <div class="container">
+        <h2>Profile Page</h2>
+        <p class="title">Edit your personal information</p>
+        <p>As soon as you successfully login You can click your name on the top right to enter your profile page. Once you are in the profile page you can click "Edit Profile" button to change your personal information.</p>
+        <p>in the Profile page edit section you have the option to become a business client</p>
+        <p><button class="button" id="about-us-profile-btn">GO TO PROFILE PAGE</button></p>
+      </div>
+    </div>
+  </div>
+</div>
         </div>
         <!-- contact us -->
         <div id="contact-us" class="d-none">

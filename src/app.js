@@ -19,6 +19,19 @@ const navLoginPageLink = document.getElementById("nav-login-page");
 const navEditProfilePage = document.getElementById("nav-edit-profile-page");
 const navLogout = document.getElementById("nav-logout");
 
+const aboutDisplaysBtnLink = document.getElementById("about-us-display-btn");
+const aboutRegisterBtnLink = document.getElementById("about-us-register-btn");
+const aboutProfileBtnLink = document.getElementById("about-us-profile-btn");
+aboutDisplaysBtnLink.addEventListener("click", function () {
+  handlePageChange(PAGES.HOME);
+});
+aboutRegisterBtnLink.addEventListener("click", function () {
+  handlePageChange(PAGES.REGISTER);
+});
+aboutProfileBtnLink.addEventListener("click", function () {
+  handlePageChange(PAGES.PROFILE);
+});
+
 window.addEventListener("load", () => {
   initializeNavbar(showNewPopup);
   if (checkIfConnected()) {
