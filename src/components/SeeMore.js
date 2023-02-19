@@ -7,8 +7,6 @@ const seeMorePrice = document.getElementById("list-see-more-price");
 const seeMoreContainer = document.getElementById("list-see-more-container");
 
 const initSeeMore = (selectedPropertyFromHomePage) => {
-  console.log({ selectedPropertyFromHomePage });
-
   /*
     set data from selectedProperty to html
     */
@@ -17,8 +15,6 @@ const initSeeMore = (selectedPropertyFromHomePage) => {
   } else {
     return;
   }
-  console.log({ seeMoreName });
-
   seeMoreImg.src = selectedProperty.imgUrl;
   seeMoreName.innerText = selectedProperty.name;
   seeMoreDescription.innerText = selectedProperty.description;
@@ -29,7 +25,6 @@ const initSeeMore = (selectedPropertyFromHomePage) => {
 
 const seeMore = () => {
   seeMoreContainer.classList.remove("d-none");
-  console.log("here");
 };
 
 const hideSeeMore = () => {

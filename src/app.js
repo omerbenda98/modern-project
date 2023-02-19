@@ -13,7 +13,6 @@ import checkIfConnected from "./utils/checkIfConnected.js";
 
 const navHomeLink = document.getElementById("nav-home-link");
 const navAboutusLink = document.getElementById("nav-aboutus-link");
-const navContactusLink = document.getElementById("nav-contactus-link");
 const navRegisterPageLink = document.getElementById("nav-register-page");
 const navLoginPageLink = document.getElementById("nav-login-page");
 const navEditProfilePage = document.getElementById("nav-edit-profile-page");
@@ -46,9 +45,6 @@ navHomeLink.addEventListener("click", function () {
 });
 navAboutusLink.addEventListener("click", function () {
   handlePageChange(PAGES.ABOUT);
-});
-navContactusLink.addEventListener("click", function () {
-  handlePageChange(PAGES.CONTACT);
 });
 navRegisterPageLink.addEventListener("click", function () {
   handlePageChange(PAGES.REGISTER);

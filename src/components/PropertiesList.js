@@ -58,7 +58,7 @@ const createItem = (name, description, price, img, id) => {
         </div>
         <div class="col-md-2">
         <button type="button" class="btn btn-success w-100" id="listSeeMoreBtn-${id}">
-          See More<br/><i class="bi bi-arrow-right"></i>
+          See More<i class="bi bi-arrow-right m-2"></i>
         </button>
         ${isAdmin ? adminBtns : ""}
         </div>
@@ -134,4 +134,10 @@ const createBtnEventListener = (idKeyword, handleFunction) => {
   }
 };
 
-export { initialPropertiesList, updatePropertiesList };
+export {
+  initialPropertiesList,
+  updatePropertiesList,
+  // clearEventListeners,
+  // createBtnEventListener,
+  // getIdFromClick,
+};

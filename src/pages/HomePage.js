@@ -37,7 +37,13 @@ window.addEventListener("load", () => {
   originalPropertiesArr = [...propertiesArr];
   isAdmin = checkIfAdmin();
   //passing propertiesArr to PropertiesGallery.js
-  initialPropertiesGallery(propertiesArr);
+  initialPropertiesGallery(
+    propertiesArr,
+    isAdmin,
+    deleteProperty,
+    showPopup,
+    seeMore
+  );
   initialPropertiesList(
     propertiesArr,
     isAdmin,
@@ -137,13 +143,12 @@ const sortPropertys = (asc = true) => {
   }
   updateDisplays();
 };
+
 const seeMore = (id) => {
   let selectedProperty = propertiesArr.find((item) => item.id === +id);
   if (!selectedProperty) {
     return;
   }
-  console.log({ selectedProperty });
-
   initSeeMore(selectedProperty);
 };
 
