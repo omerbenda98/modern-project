@@ -116,6 +116,13 @@
                         id="editPropertiesPopupName"
                         placeholder="Name"
                       />
+                             <div
+                                  class="alert alert-danger d-none"
+                                  role="alert"
+                                  id="popup-alert-destination"
+                                >
+                                  Last name rules
+                                </div>
                       <label for="editPropertiesPopupName">Name</label>
                     </div>
                   </h5>
@@ -126,6 +133,13 @@
                         placeholder="description"
                         id="editPropertiesPopupDescription"
                       ></textarea>
+                             <div
+                                  class="alert alert-danger d-none"
+                                  role="alert"
+                                  id="popup-alert-description"
+                                >
+                                  Description rules
+                                </div>
                       <label for="editPropertiesPopupDescription"
                         >Description</label
                       >
@@ -141,6 +155,13 @@
                         id="editPropertiesPopupPrice"
                         placeholder="Price"
                       />
+                             <div
+                                  class="alert alert-danger d-none"
+                                  role="alert"
+                                  id="popup-alert-price"
+                                >
+                                  Price rules
+                                </div>
                       <label for="editPropertiesPopupPrice">Price</label>
                     </div>
                   </li>
@@ -152,6 +173,13 @@
                         id="editPropertiesPopupImg"
                         placeholder="Img"
                       />
+                             <div
+                                  class="alert alert-danger d-none"
+                                  role="alert"
+                                  id="pop-alert-imgUrl"
+                                >
+                                  Img Url rules
+                                </div>
                       <label for="editPropertiesPopupImg">Img</label>
                     </div>
                   </li>
@@ -286,7 +314,7 @@
           <div id="propertiesList" class="d-none">
             <ul class="list-group" id="home-page-properties-list"></ul>
           </div>
-          <div class="carusel d-none" id="propertiesCarusel">
+          <div id="propertiesCarusel" class="carusel d-none">
             <div class="img-container" id="home-page-properties-carousel"></div>
             <div class="d-flex justify-content-around">
               <button
@@ -1177,7 +1205,7 @@ Once you have registered, you can log in to your account using our login page. <
         <div id="page-not-found-page" class="d-none"></div>
       </main>
       <footer class="border-top pt-3 d-flex justify-content-center">
-        2023©️
+       Created by Omer Ben-David 2023©️
       </footer>
     </div>
     <script src="../src/app.js" type="module"></script>
