@@ -1,41 +1,41 @@
-let propertiesArr;
+let flightsArr;
 let listDiv;
 let isAdmin;
-let deleteProperty;
+let deleteFlight;
 let showPopup;
 let seeMore;
 //this function will transfer data from homepage to this page
-const initialPropertiesList = (
-  propertiesArrFromHomePage,
+const initialFlightList = (
+  flightsArrFromHomePage,
   isAdminParam,
-  deletePropertyFromHomePage,
+  deleteFlightFromHomePage,
   showPopupFromHomePage,
   seeMoreFromHomePage
 ) => {
-  listDiv = document.getElementById("home-page-properties-list");
+  listDiv = document.getElementById("home-page-flight-list");
   isAdmin = isAdminParam;
-  deleteProperty = deletePropertyFromHomePage;
+  deleteFlight = deleteFlightFromHomePage;
   showPopup = showPopupFromHomePage;
   seeMore = seeMoreFromHomePage;
-  updatePropertiesList(propertiesArrFromHomePage);
+  updateFlightList(flightsArrFromHomePage);
 };
 
-const updatePropertiesList = (propertiesArrFromHomePage) => {
+const updateFlightList = (flightsArrFromHomePage) => {
   /*
     this function will get data from homepage and create new list.
     if the list already exists it will remove the old one and
     create new one
   */
-  propertiesArr = propertiesArrFromHomePage;
+  flightsArr = flightsArrFromHomePage;
   createList();
 };
 
-const createItem = (name, description, price, img, id) => {
+const createItem = (destination, description, price, img, id) => {
   const adminBtns = `
-  <button type="button" class="btn btn-warning w-100" id="propertyListEditBtn-${id}">
+  <button type="button" class="btn btn-warning w-100" id="flightListEditBtn-${id}">
     <i class="bi bi-pen-fill"></i> Edit
   </button>
-  <button type="button" class="btn btn-danger w-100" id="propertyListDeleteBtn-${id}">
+  <button type="button" class="btn btn-danger w-100" id="flightListDeleteBtn-${id}">
     <i class="bi bi-x-circle-fill"></i> Delete
   </button>
   `;
@@ -43,11 +43,11 @@ const createItem = (name, description, price, img, id) => {
   <li class="list-group-item">
     <div class="row">
         <div class="col-md-2">
-        <img src="${img}" class="img-fluid" alt="${name}" />
+        <img src="${img}" class="img-fluid" alt="${destination}" />
         </div>
         <div class="col-md-8">
         <div class="card-body">
-            <h5 class="card-title">${name}</h5>
+            <h5 class="card-title">${destination}</h5>
             <h6 class="card-subtitle mb-2 text-muted">
             ${price}
             </h6>
@@ -80,7 +80,7 @@ const getIdFromClick = (ev) => {
 };
 
 const handleDeleteBtnClick = (ev) => {
-  deleteProperty(getIdFromClick(ev));
+  deleteFlight(getIdFromClick(ev));
 };
 
 const handleEditBtnClick = (ev) => {
@@ -102,26 +102,26 @@ const clearEventListeners = (idKeyword, handleFunction) => {
 const createList = () => {
   let innerStr = "";
   //clear event listeners for delete btns
-  clearEventListeners("propertyListDeleteBtn", handleDeleteBtnClick);
+  clearEventListeners("flightListDeleteBtn", handleDeleteBtnClick);
   //clear event listeners for edit btns
-  clearEventListeners("propertyListEditBtn", handleEditBtnClick);
+  clearEventListeners("flightListEditBtn", handleEditBtnClick);
   clearEventListeners("listSeeMoreBtn", handleShowMoreBtnClick);
 
   //create new elements and remove old ones
-  for (let property of propertiesArr) {
+  for (let flight of flightsArr) {
     innerStr += createItem(
-      property.name,
-      property.description,
-      property.price,
-      property.imgUrl,
-      property.id
+      flight.destination,
+      flight.description,
+      flight.price,
+      flight.imgUrl,
+      flight.id
     );
   }
   listDiv.innerHTML = innerStr;
   // add event listeners for delete btns
-  createBtnEventListener("propertyListDeleteBtn", handleDeleteBtnClick);
+  createBtnEventListener("flightListDeleteBtn", handleDeleteBtnClick);
   // add event listeners for edit btns
-  createBtnEventListener("propertyListEditBtn", handleEditBtnClick);
+  createBtnEventListener("flightListEditBtn", handleEditBtnClick);
   createBtnEventListener("listSeeMoreBtn", handleShowMoreBtnClick);
 };
 
@@ -135,8 +135,8 @@ const createBtnEventListener = (idKeyword, handleFunction) => {
 };
 
 export {
-  initialPropertiesList,
-  updatePropertiesList,
+  initialFlightList,
+  updateFlightList,
   // clearEventListeners,
   // createBtnEventListener,
   // getIdFromClick,

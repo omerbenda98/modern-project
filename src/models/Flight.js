@@ -1,15 +1,15 @@
-class Property {
+class Flight {
   id;
-  name;
+  destenation;
   price;
   description;
   imgUrl;
-  constructor(id, name, price, description, imgUrl) {
+  constructor(id, destenation, price, description, imgUrl) {
     this.id = id;
-    this.name = name;
+    this.destenation = destenation;
     this.price = price;
     this.description = description;
     this.imgUrl = imgUrl;
   }
 }
-export default Property;
+export default Flight;

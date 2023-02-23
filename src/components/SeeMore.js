@@ -1,24 +1,24 @@
-let selectedProperty;
+let selectedFlight;
 const seeMoreImg = document.getElementById("list-see-more-img");
-const seeMoreName = document.getElementById("list-see-more-name");
+const seeMoreDestination = document.getElementById("list-see-more-destination");
 const seeMoreDescription = document.getElementById("list-see-more-description");
 const seeMorePrice = document.getElementById("list-see-more-price");
 
 const seeMoreContainer = document.getElementById("list-see-more-container");
 
-const initSeeMore = (selectedPropertyFromHomePage) => {
+const initSeeMore = (selectedFlightFromHomePage) => {
   /*
-    set data from selectedProperty to html
+    set data from selectedFlight to html
     */
-  if (selectedPropertyFromHomePage) {
-    selectedProperty = selectedPropertyFromHomePage;
+  if (selectedFlightFromHomePage) {
+    selectedFlight = selectedFlightFromHomePage;
   } else {
     return;
   }
-  seeMoreImg.src = selectedProperty.imgUrl;
-  seeMoreName.innerText = selectedProperty.name;
-  seeMoreDescription.innerText = selectedProperty.description;
-  seeMorePrice.innerText = selectedProperty.price;
+  seeMoreImg.src = selectedFlight.imgUrl;
+  seeMoreDestination.innerText = selectedFlight.destination;
+  seeMoreDescription.innerText = selectedFlight.description;
+  seeMorePrice.innerText = selectedFlight.price;
 
   seeMore();
 };

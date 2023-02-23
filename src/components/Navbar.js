@@ -7,12 +7,13 @@ let isAdmin;
 let isConnected;
 let showPopup;
 
-let navAddNewPropertyLink;
+let navAddNewFlightLink;
+let addFlight;
 
 const navBeforeLogin = document.getElementById("navBeforeLogin");
 const navAfterLogin = document.getElementById("navAfterLogin");
 
-const initializeNavbar = (showPopupFromHomePage) => {
+const initializeNavbar = (showPopupFromHomePage, addFlightFromHomePage) => {
   nextId = getNextId();
   isAdmin = checkIfAdmin();
   isConnected = checkIfConnected();
@@ -21,13 +22,15 @@ const initializeNavbar = (showPopupFromHomePage) => {
     navAfterLogin.classList.remove("d-none");
   }
   showPopup = showPopupFromHomePage;
+  addFlight = addFlightFromHomePage;
   /* nav */
-  navAddNewPropertyLink = document.getElementById("nav-add-new-property-link");
+  navAddNewFlightLink = document.getElementById("nav-add-new-flight-link");
   if (!isAdmin) {
-    navAddNewPropertyLink.classList.add("d-none");
+    navAddNewFlightLink.classList.add("d-none");
   }
-  navAddNewPropertyLink.addEventListener("click", () => {
+  navAddNewFlightLink.addEventListener("click", () => {
     showPopup();
+    addFlight();
   });
 };
 

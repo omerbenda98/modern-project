@@ -1,26 +1,26 @@
-import Property from "../models/Property.js";
+import Flight from "../models/Flight.js";
 import User from "../models/User.js";
 
 let id = 1;
 let nextUserId = 1;
 
 const createData = () => {
-  let propertiesArr = [
-    new Property(
+  let flightsArr = [
+    new Flight(
       id++,
       "Dubai",
       799.9,
       `Experience the magic of Dubai with our unbeatable flight deals! Whether you're seeking adventure in the desert or luxury shopping in the city, our flights to Dubai are the perfect way to get there. With prices that won't break the bank, you can enjoy all that this vibrant destination has to offer without worrying about your budget. Book now and start planning your dream vacation to Dubai today!`,
       "./assets/imgs/homepageCarouselImg.jpg"
     ),
-    new Property(
+    new Flight(
       id++,
       "Ibiza",
       399.9,
       `Looking for a sun-soaked escape? Look no further than Ibiza! Our flights to this Balearic Island paradise are now available at amazing prices, making it easier than ever to discover the vibrant culture, stunning beaches, and unforgettable nightlife that Ibiza is famous for. Whether you're seeking relaxation or adventure, our flights to Ibiza are the perfect way to kick-start your island getaway. So why wait? Book now and get ready to experience the magic of Ibiza!`,
       "./assets/imgs/homepageCarouselImg2.jpg"
     ),
-    new Property(
+    new Flight(
       id++,
       "Iceland",
       499.9,
@@ -28,7 +28,7 @@ const createData = () => {
       "./assets/imgs/homepageCarouselImg3.jpg"
     ),
   ];
-  return propertiesArr;
+  return flightsArr;
 };
 
 // const createUserData = () => {
@@ -40,9 +40,9 @@ const createData = () => {
 // };
 
 const setInitialData = () => {
-  let properties = localStorage.getItem("props");
+  let flights = localStorage.getItem("props");
   let users = localStorage.getItem("users");
-  if (properties && users) {
+  if (flights && users) {
     return;
   }
   localStorage.setItem("props", JSON.stringify(createData()));

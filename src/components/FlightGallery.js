@@ -4,43 +4,43 @@
 //   getIdFromClick,
 // } from "./PropertiesList.js";
 
-let propertiesArr;
+let flightsArr;
 let galleryDiv;
 let isAdmin;
-let deleteProperty;
+let deleteFlight;
 let showPopup;
 let seeMore;
 //this function will transfer data from homepage to this page
-const initialPropertiesGallery = (
-  propertiesArrFromHomePage,
+const initialFlightGallery = (
+  flightsArrFromHomePage,
   isAdminParam,
-  deletePropertyFromHomePage,
+  deleteFlightFromHomePage,
   showPopupFromHomePage,
   seeMoreFromHomePage
 ) => {
-  galleryDiv = document.getElementById("home-page-properties-gallery");
+  galleryDiv = document.getElementById("home-page-flight-gallery");
   isAdmin = isAdminParam;
-  deleteProperty = deletePropertyFromHomePage;
+  deleteFlight = deleteFlightFromHomePage;
   showPopup = showPopupFromHomePage;
   seeMore = seeMoreFromHomePage;
-  updatePropertiesGallery(propertiesArrFromHomePage);
+  updateFlightGallery(flightsArrFromHomePage);
 };
 
-const updatePropertiesGallery = (propertiesArrFromHomePage) => {
+const updateFlightGallery = (flightsArrFromHomePage) => {
   /*
     this function will get data from homepage and create new gallery.
     if the gallery already exists it will remove the old one and
     create new one
   */
-  propertiesArr = propertiesArrFromHomePage;
+  flightsArr = flightsArrFromHomePage;
   createGallery();
 };
 
-const createCard = (name, description, price, img, id) => {
-  const adminBtns = `  <button type="button" class="btn btn-warning" id="propertyGalleryEditBtn-${id}">
+const createCard = (destination, description, price, img, id) => {
+  const adminBtns = `  <button type="button" class="btn btn-warning" id="flightGalleryEditBtn-${id}">
     <i class="bi bi-pen-fill"></i> Edit
   </button>
-  <button type="button" class="btn btn-danger" id="propertyGalleryDeleteBtn-${id}">
+  <button type="button" class="btn btn-danger" id="flightGalleryDeleteBtn-${id}">
     <i class="bi bi-x-circle-fill"></i> Delete
   </button>
   `;
@@ -50,10 +50,10 @@ const createCard = (name, description, price, img, id) => {
       <img
         src="${img}"
         class="card-img-top"
-        alt="${name}"
+        alt="${destination}"
       />
       <div class="card-body">
-        <h5 class="card-title">${name}</h5>
+        <h5 class="card-title">${destination}</h5>
         <p class="card-text">
           ${description}
         </p>
@@ -86,7 +86,7 @@ const getIdFromClick = (ev) => {
 };
 
 const handleDeleteBtnClick = (ev) => {
-  deleteProperty(getIdFromClick(ev));
+  deleteFlight(getIdFromClick(ev));
 };
 
 const handleEditBtnClick = (ev) => {
@@ -108,25 +108,25 @@ const createGallery = () => {
   let innerStr = "";
 
   //clear event listeners for delete btns
-  clearEventListeners("propertyGalleryDeleteBtn", handleDeleteBtnClick);
+  clearEventListeners("flightGalleryDeleteBtn", handleDeleteBtnClick);
   //clear event listeners for edit btns
-  clearEventListeners("propertyGalleryEditBtn", handleEditBtnClick);
+  clearEventListeners("flightGalleryEditBtn", handleEditBtnClick);
   clearEventListeners("gallerySeeMoreBtn", handleShowMoreBtnClick);
 
-  for (let property of propertiesArr) {
+  for (let flight of flightsArr) {
     innerStr += createCard(
-      property.name,
-      property.description,
-      property.price,
-      property.imgUrl,
-      property.id
+      flight.destination,
+      flight.description,
+      flight.price,
+      flight.imgUrl,
+      flight.id
     );
   }
   galleryDiv.innerHTML = innerStr;
   // add event listeners for delete btns
-  createBtnEventListener("propertyGalleryDeleteBtn", handleDeleteBtnClick);
+  createBtnEventListener("flightGalleryDeleteBtn", handleDeleteBtnClick);
   // add event listeners for edit btns
-  createBtnEventListener("propertyGalleryEditBtn", handleEditBtnClick);
+  createBtnEventListener("flightGalleryEditBtn", handleEditBtnClick);
   createBtnEventListener("gallerySeeMoreBtn", handleShowMoreBtnClick);
 };
 //Creates event listener for the delete buttons
@@ -139,4 +139,4 @@ const createBtnEventListener = (idKeyword, handleFunction) => {
   }
 };
 
-export { initialPropertiesGallery, updatePropertiesGallery };
+export { initialFlightGallery, updateFlightGallery };

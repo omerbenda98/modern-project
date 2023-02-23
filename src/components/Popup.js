@@ -1,73 +1,57 @@
-import Property from "../models/Property.js";
+import Flight from "../models/Flight.js";
 import getNextId from "../utils/getNextId.js";
 import validateDescription from "../validation/validateDescription.js";
 import validateDestination from "../validation/validateDestination.js";
 import validateImgUrl from "../validation/validateImgUrl.js";
 import validatePrice from "../validation/validatePrice.js";
 
-let selectedProperty, editProperty;
+let selectedFlight;
 
-let destinationInput = document.getElementById("editPropertiesPopupName");
-let descriptionInput = document.getElementById(
-  "editPropertiesPopupDescription"
-);
-let priceInput = document.getElementById("editPropertiesPopupPrice");
-let imgUrlInput = document.getElementById("editPropertiesPopupImg");
+let destinationInput = document.getElementById("editFlightPopupDestination");
+let descriptionInput = document.getElementById("editFlightPopupDescription");
+let priceInput = document.getElementById("editFlightPopupPrice");
+let imgUrlInput = document.getElementById("editFlightPopupImg");
+let popupSaveBtn = document.getElementById("editFlightPopupSaveBtn");
 
-let priceOk = false;
-let descriptionOk = false;
-let destinationOk = false;
-let imgUrlOk = false;
+let priceOk = true;
+let descriptionOk = true;
+let destinationOk = true;
+let imgUrlOk = true;
+// popupSaveBtn.disabled = false;
 
-const editPropertiesPopupImgDisplay = document.getElementById(
-  "editPropertiesPopupImgDisplay"
-);
-// const editPropertiesPopupName = document.getElementById(
-//   "editPropertiesPopupName"
-// );
-// const editPropertiesPopupDescription = document.getElementById(
-//   "editPropertiesPopupDescription"
-// );
-// const editPropertiesPopupPrice = document.getElementById(
-//   "editPropertiesPopupPrice"
-// );
-// const editPropertiesPopupImg = document.getElementById(
-//   "editPropertiesPopupImg"
-// );
-const editPropertiesPopup = document.getElementById("editPropertiesPopup");
+const editFlightPopup = document.getElementById("editFlightPopup");
 
-const initPopup = (selectedPropertyFromHomePage, editPropertyFromHomePage) => {
+const initPopup = (selectedFlightFromHomePage, selectedFlight) => {
   /*
-    set data from selectedProperty to html
+    set data from selectedFlight to html
     */
-  if (selectedPropertyFromHomePage) {
-    selectedProperty = selectedPropertyFromHomePage;
+  if (selectedFlightFromHomePage) {
+    selectedFlight = selectedFlightFromHomePage;
   } else {
-    selectedProperty = new Property(getNextId(), "", 0, "", "");
+    selectedFlight = new Flight(getNextId(), "", 0, "", "");
   }
-  editProperty = editPropertyFromHomePage;
-  editPropertiesPopupImgDisplay.src = selectedProperty.imgUrl;
-  descriptionInput.value = selectedProperty.name;
-  descriptionInput.value = selectedProperty.description;
-  priceInput.value = selectedProperty.price;
-  imgUrlInput.value = selectedProperty.imgUrl;
+  editFlightPopupImgDisplay.src = selectedFlight.imgUrl;
+  destinationInput.value = selectedFlight.destination;
+  descriptionInput.value = selectedFlight.description;
+  priceInput.value = selectedFlight.price;
+  imgUrlInput.value = selectedFlight.imgUrl;
   showPopup();
 };
 
 const showPopup = () => {
-  editPropertiesPopup.classList.remove("d-none");
+  editFlightPopup.classList.remove("d-none");
 };
 
 const hidePopup = () => {
-  editPropertiesPopup.classList.add("d-none");
+  editFlightPopup.classList.add("d-none");
 };
 
 window.addEventListener("load", () => {
-  editPropertiesPopup.addEventListener("click", (ev) => {
+  editFlightPopup.addEventListener("click", (ev) => {
     if (
-      ev.target.id !== "editPropertiesPopup" &&
-      ev.target.id !== "editPropertiesPopupCancelBtn" &&
-      ev.target.id !== "editPropertiesPopupCancelBtnIcon"
+      ev.target.id !== "editFlightPopup" &&
+      ev.target.id !== "editFlightPopupCancelBtn" &&
+      ev.target.id !== "editFlightPopupCancelBtnIcon"
     ) {
       return;
     }
@@ -163,7 +147,7 @@ const checkPriceInput = () => {
   checkIfCanEnableBtn();
 };
 const checkImgUrlInput = () => {
-  let errorArr = validateImgUrl(priceInput.value);
+  let errorArr = validateImgUrl(imgUrlInput.value);
   if (errorArr.length === 0) {
     //the text is ok
     imgUrlInput.classList.remove("is-invalid");
@@ -181,25 +165,23 @@ const checkImgUrlInput = () => {
 };
 
 const checkIfCanEnableBtn = () =>
-  (btnRegister.disabled = !(
+  (popupSaveBtn.disabled = !(
     destinationOk &&
     priceOk &&
     descriptionOk &&
     imgUrlOk
   ));
 
-document
-  .getElementById("editPropertiesPopupSaveBtn")
-  .addEventListener("click", () => {
-    selectedProperty.name = destinationInput.value;
-    selectedProperty.description = descriptionInput.value;
-    selectedProperty.price = priceInput.value;
-    selectedProperty.imgUrl = imgUrlInput.value;
-    editProperty(selectedProperty);
-    hidePopup();
-  });
-imgUrlInput.addEventListener("input", () => {
-  editPropertiesPopupImgDisplay.src = imgUrlInput.value;
+popupSaveBtn.addEventListener("click", () => {
+  selectedFlight.destination = destinationInput.value;
+  selectedFlight.description = descriptionInput.value;
+  selectedFlight.price = priceInput.value;
+  selectedFlight.imgUrl = imgUrlInput.value;
+  addNewFlight(selectedFlight);
+  hidePopup();
 });
-
+imgUrlInput.addEventListener("input", () => {
+  editFlightPopupImgDisplay.src = imgUrlInput.value;
+});
+console.log(popupSaveBtn);
 export { initPopup, showPopup, hidePopup };

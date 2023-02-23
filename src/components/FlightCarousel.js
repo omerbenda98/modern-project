@@ -1,15 +1,15 @@
-let propertiesArr;
+let flightsArr;
 let carouselDiv;
 let showIdx; //index(array) of the image that we display now
 let animationStarted;
 //this function will transfer data from homepage to this page
-const initialPropertiesCarousel = (propertiesArrFromHomePage) => {
-  carouselDiv = document.getElementById("home-page-properties-carousel");
+const initialFlightCarousel = (flightsArrFromHomePage) => {
+  carouselDiv = document.getElementById("home-page-flights-carousel");
   initializeBtns();
-  updatePropertiesCarousel(propertiesArrFromHomePage);
+  updateFlightCarousel(flightsArrFromHomePage);
 };
 
-const updatePropertiesCarousel = (propertiesArrFromHomePage) => {
+const updateFlightCarousel = (flightsArrFromHomePage) => {
   /*
     this function will get data from homepage and create new carousel.
     if the carousel already exists it will remove the old one and
@@ -17,7 +17,7 @@ const updatePropertiesCarousel = (propertiesArrFromHomePage) => {
   */
   showIdx = 0;
   animationStarted = 0;
-  propertiesArr = propertiesArrFromHomePage;
+  flightsArr = flightsArrFromHomePage;
   createCarousel();
 };
 
@@ -29,7 +29,7 @@ const initializeBtns = () => {
     animationStarted = 2;
     let prevIdx = showIdx - 1;
     if (prevIdx < 0) {
-      prevIdx = propertiesArr.length - 1; //last image
+      prevIdx = flightsArr.length - 1; //last image
     }
     let imgToHide = document.querySelector(
       `.img-container > img:nth-child(${showIdx + 1})`
@@ -57,7 +57,7 @@ const initializeBtns = () => {
       { once: true }
     );
     // showIdx++;
-    // if (showIdx >= propertiesArr.length) {
+    // if (showIdx >= flightsArr.length) {
     //   showIdx = 0;
     // }
     showIdx = prevIdx;
@@ -70,7 +70,7 @@ const initializeBtns = () => {
     let nextIdx = showIdx + 1;
     //showIdx = index of image to hide
     //nextIdx = index of image to display
-    if (nextIdx >= propertiesArr.length) {
+    if (nextIdx >= flightsArr.length) {
       nextIdx = 0;
     }
     let imgToHide = document.querySelector(
@@ -99,24 +99,24 @@ const initializeBtns = () => {
       { once: true }
     );
     // showIdx++;
-    // if (showIdx >= propertiesArr.length) {
+    // if (showIdx >= flightsArr.length) {
     //   showIdx = 0;
     // }
     showIdx = nextIdx;
   });
 };
 
-const createItem = (name, img) => {
+const createItem = (destination, img) => {
   //opacity-0 hide image
   return `
-      <img src="${img}" alt="${name}" class="opacity-0" />
+      <img src="${img}" alt="${destination}" class="opacity-0" />
   `;
 };
 
 const createCarousel = () => {
   let innerStr = "";
-  for (let property of propertiesArr) {
-    innerStr += createItem(property.name, property.imgUrl);
+  for (let flight of flightsArr) {
+    innerStr += createItem(flight.destination, flight.imgUrl);
   }
   carouselDiv.innerHTML = innerStr;
   //show the first img
@@ -125,4 +125,4 @@ const createCarousel = () => {
     .classList.remove("opacity-0");
 };
 
-export { initialPropertiesCarousel, updatePropertiesCarousel };
+export { initialFlightCarousel, updateFlightCarousel };

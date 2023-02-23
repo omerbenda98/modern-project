@@ -1,57 +1,46 @@
 import {
-  initialPropertiesGallery,
-  updatePropertiesGallery,
-} from "../components/PropertiesGallery.js";
+  initialFlightGallery,
+  updateFlightGallery,
+} from "../components/FlightGallery.js";
 import {
-  initialPropertiesList,
-  updatePropertiesList,
-} from "../components/PropertiesList.js";
+  initialFlightList,
+  updateFlightList,
+} from "../components/FlightList.js";
 import {
-  initialPropertiesCarousel,
-  updatePropertiesCarousel,
-} from "../components/PropertiesCarousel.js";
+  initialFlightCarousel,
+  updateFlightCarousel,
+} from "../components/FlightCarousel.js";
 import { initPopup } from "../components/Popup.js";
+// import { initAddFlightPopup } from "../components/Popup.js";
 import { initSeeMore } from "../components/SeeMore.js";
 import checkIfAdmin from "../utils/checkIfAdmin.js";
 
-let propertiesArr, originalPropertiesArr;
+let flightsArr, originalFlightsArr;
 let displayNow; // display that we can see now
 
 /* btns */
 let homeDisplayList;
 let homeDisplayGallery;
-let homeDisplayCousel;
+let homeDisplayCarousel;
 /* displays */
-let propertiesGallery;
-let propertiesList;
-let propertiesCarusel;
+let flightGallery;
+let flightList;
+let flightCarousel;
 
 let isAdmin;
 
 window.addEventListener("load", () => {
-  propertiesArr = localStorage.getItem("props");
-  if (!propertiesArr) {
+  flightsArr = localStorage.getItem("props");
+  if (!flightsArr) {
     return;
   }
-  propertiesArr = JSON.parse(propertiesArr);
-  originalPropertiesArr = [...propertiesArr];
+  flightsArr = JSON.parse(flightsArr);
+  originalFlightsArr = [...flightsArr];
   isAdmin = checkIfAdmin();
-  //passing propertiesArr to PropertiesGallery.js
-  initialPropertiesGallery(
-    propertiesArr,
-    isAdmin,
-    deleteProperty,
-    showPopup,
-    seeMore
-  );
-  initialPropertiesList(
-    propertiesArr,
-    isAdmin,
-    deleteProperty,
-    showPopup,
-    seeMore
-  );
-  initialPropertiesCarousel(propertiesArr);
+  //passing flightsArr to flightGallery.js
+  initialFlightGallery(flightsArr, isAdmin, deleteFlight, showPopup, seeMore);
+  initialFlightList(flightsArr, isAdmin, deleteFlight, showPopup, seeMore);
+  initialFlightCarousel(flightsArr);
   initializeElements();
   initializeBtns();
 });
@@ -60,40 +49,40 @@ const initializeElements = () => {
   /* btns */
   homeDisplayList = document.getElementById("homeDisplayList");
   homeDisplayGallery = document.getElementById("homeDisplayGallery");
-  homeDisplayCousel = document.getElementById("homeDisplayCousel");
+  homeDisplayCarousel = document.getElementById("homeDisplayCarousel");
   /* divs */
-  propertiesGallery = document.getElementById("propertiesGallery");
-  propertiesList = document.getElementById("propertiesList");
-  propertiesCarusel = document.getElementById("propertiesCarusel");
-  displayNow = propertiesList; // choose who we want to display
+  flightGallery = document.getElementById("flightGallery");
+  flightList = document.getElementById("flightList");
+  flightCarousel = document.getElementById("flightCarousel");
+  displayNow = flightList; // choose who we want to display
   displayToDisplay(displayNow);
 };
 
 const initializeBtns = () => {
   homeDisplayList.addEventListener("click", () => {
-    displayToDisplay(propertiesList);
+    displayToDisplay(flightList);
   });
   homeDisplayGallery.addEventListener("click", () => {
-    displayToDisplay(propertiesGallery);
+    displayToDisplay(flightGallery);
   });
-  homeDisplayCousel.addEventListener("click", () => {
-    displayToDisplay(propertiesCarusel);
+  homeDisplayCarousel.addEventListener("click", () => {
+    displayToDisplay(flightCarousel);
   });
   document
     .getElementById("homeDisplaySortASC")
     .addEventListener("click", () => {
-      sortPropertys();
+      sortFlights();
     });
   document
     .getElementById("homeDisplaySortDESC")
     .addEventListener("click", () => {
-      sortPropertys(false);
+      sortFlights(false);
     });
   document
     .getElementById("homeDisplaySearch")
     .addEventListener("input", (ev) => {
       let regex = new RegExp("^" + ev.target.value, "i");
-      propertiesArr = originalPropertiesArr.filter((item) => {
+      flightsArr = originalFlightsArr.filter((item) => {
         let reg = regex.test(item.name);
         // console.log("item.name", item.name, " reg", reg);
         return reg;
@@ -114,67 +103,65 @@ const displayToDisplay = (toDisplay) => {
 };
 
 const updateDisplays = () => {
-  updatePropertiesGallery(propertiesArr); // update gallery
-  updatePropertiesList(propertiesArr); // update list
-  updatePropertiesCarousel(propertiesArr); // update carousel
+  updateFlightGallery(flightsArr); // update gallery
+  updateFlightList(flightsArr); // update list
+  updateFlightCarousel(flightsArr); // update carousel
 };
 
 const saveToLocalStorage = (arrToSave) => {
   localStorage.setItem("props", JSON.stringify(arrToSave));
 };
 
-const deleteProperty = (id) => {
+const deleteFlight = (id) => {
   id = +id; //convert string to number
-  originalPropertiesArr = originalPropertiesArr.filter(
-    (item) => item.id !== id
-  );
-  saveToLocalStorage(originalPropertiesArr);
-  propertiesArr = propertiesArr.filter((item) => item.id !== id); //delete property by index
+  originalFlightsArr = originalFlightsArr.filter((item) => item.id !== id);
+  saveToLocalStorage(originalFlightsArr);
+  flightsArr = flightsArr.filter((item) => item.id !== id); //delete property by index
   updateDisplays();
 };
 
-const sortPropertys = (asc = true) => {
+const sortFlights = (asc = true) => {
   if (asc) {
     // from a to z
-    propertiesArr.sort((a, b) => a.name.localeCompare(b.name));
+    flightsArr.sort((a, b) => a.name.localeCompare(b.name));
   } else {
     // from z to a
-    propertiesArr.sort((a, b) => b.name.localeCompare(a.name));
+    flightsArr.sort((a, b) => b.name.localeCompare(a.name));
   }
   updateDisplays();
 };
 
 const seeMore = (id) => {
-  let selectedProperty = propertiesArr.find((item) => item.id === +id);
-  if (!selectedProperty) {
+  let selectedFlight = flightsArr.find((item) => item.id === +id);
+  if (!selectedFlight) {
     return;
   }
-  initSeeMore(selectedProperty);
+  initSeeMore(selectedFlight);
 };
 
 const showPopup = (id) => {
-  let selectedProperty = propertiesArr.find((item) => item.id === +id);
-  if (!selectedProperty) {
+  let selectedFlight = flightsArr.find((item) => item.id === +id);
+  if (!selectedFlight) {
     return;
   }
-  initPopup(selectedProperty, editProperty);
+  initPopup(selectedFlight, editFlight);
 };
 
 const showNewPopup = () => {
-  initPopup(undefined, addNewProperty);
+  initPopup(undefined, addNewFlight);
 };
 
-const addNewProperty = (newProperty) => {
-  originalPropertiesArr = [...originalPropertiesArr, newProperty];
-  let nextId = +newProperty.id + 1;
+const addNewFlight = (newFlight) => {
+  originalFlightsArr = [...originalFlightsArr, newFlight];
+  let nextId = +newFlight.id + 1;
   localStorage.setItem("nextid", nextId + "");
-  propertiesArr = [...originalPropertiesArr];
-  editProperty();
+  flightsArr = [...originalFlightsArr];
+  editFlight();
 };
 
-const editProperty = () => {
-  saveToLocalStorage(originalPropertiesArr);
+const editFlight = () => {
+  saveToLocalStorage(originalFlightsArr);
   updateDisplays();
 };
 
-export { showNewPopup };
+export { showNewPopup, addNewFlight };

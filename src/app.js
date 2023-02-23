@@ -4,9 +4,10 @@ import "./initialData/initialData.js";
 import "./pages/RegisterPage.js";
 import "./pages/LoginPage.js";
 import "./pages/ProfilePage.js";
-import { showNewPopup } from "./pages/HomePage.js";
+import { showNewPopup, addNewFlight } from "./pages/HomePage.js";
 import initializeNavbar from "./components/Navbar.js";
 import checkIfConnected from "./utils/checkIfConnected.js";
+
 // console.log("🚀 ~ file: app.js:3 ~ handlePageChange", handlePageChange);
 
 // console.log(PAGES);
@@ -33,7 +34,7 @@ aboutProfileBtnLink.addEventListener("click", function () {
 });
 
 window.addEventListener("load", () => {
-  initializeNavbar(showNewPopup);
+  initializeNavbar(showNewPopup, addNewFlight);
   if (checkIfConnected()) {
     let user = localStorage.getItem("token");
     user = JSON.parse(user);
