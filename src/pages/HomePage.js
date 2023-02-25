@@ -10,6 +10,7 @@ import {
   initialFlightCarousel,
   updateFlightCarousel,
 } from "../components/FlightCarousel.js";
+import { initialFavoritesList, updateFavoritesPage } from "./FavoritesPage.js";
 import { initPopup } from "../components/Popup.js";
 // import { initAddFlightPopup } from "../components/Popup.js";
 import { initSeeMore } from "../components/SeeMore.js";
@@ -17,6 +18,7 @@ import checkIfAdmin from "../utils/checkIfAdmin.js";
 
 let flightsArr, originalFlightsArr;
 let displayNow; // display that we can see now
+let favoritesArr;
 
 /* btns */
 let homeDisplayList;
@@ -30,6 +32,12 @@ let flightCarousel;
 let isAdmin;
 
 window.addEventListener("load", () => {
+  if (!favoritesArr) {
+    favoritesArr = [];
+    localStorage.setItem("favorites", JSON.stringify(favoritesArr));
+  } else {
+    favoritesArr = JSON.parse(favoritesArr);
+  }
   flightsArr = localStorage.getItem("props");
   if (!flightsArr) {
     return;
@@ -38,9 +46,24 @@ window.addEventListener("load", () => {
   originalFlightsArr = [...flightsArr];
   isAdmin = checkIfAdmin();
   //passing flightsArr to flightGallery.js
-  initialFlightGallery(flightsArr, isAdmin, deleteFlight, showPopup, seeMore);
-  initialFlightList(flightsArr, isAdmin, deleteFlight, showPopup, seeMore);
+  initialFlightGallery(
+    flightsArr,
+    isAdmin,
+    deleteFlight,
+    showPopup,
+    seeMore,
+    addFavorite
+  );
+  initialFlightList(
+    flightsArr,
+    isAdmin,
+    deleteFlight,
+    showPopup,
+    seeMore,
+    addFavorite
+  );
   initialFlightCarousel(flightsArr);
+  initialFavoritesList(favoritesArr, addFavorite);
   initializeElements();
   initializeBtns();
 });
@@ -162,6 +185,18 @@ const addNewFlight = (newFlight) => {
 const editFlight = () => {
   saveToLocalStorage(originalFlightsArr);
   updateDisplays();
+};
+
+const addFavorite = (id) => {
+  let selectedFlight = flightsArr.find((item) => item.id === +id);
+
+  if (favoritesArr) {
+    favoritesArr = [...favoritesArr, selectedFlight];
+    localStorage.setItem("favorites", JSON.stringify(favoritesArr));
+  } else {
+    localStorage.setItem("favorites", JSON.stringify(selectedFlight));
+  }
+  updateFavoritesPage(favoritesArr);
 };
 
 export { showNewPopup, addNewFlight };

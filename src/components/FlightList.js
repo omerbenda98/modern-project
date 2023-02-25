@@ -4,19 +4,22 @@ let isAdmin;
 let deleteFlight;
 let showPopup;
 let seeMore;
+let addFavorite;
 //this function will transfer data from homepage to this page
 const initialFlightList = (
   flightsArrFromHomePage,
   isAdminParam,
   deleteFlightFromHomePage,
   showPopupFromHomePage,
-  seeMoreFromHomePage
+  seeMoreFromHomePage,
+  addFavoriteFromHomePage
 ) => {
   listDiv = document.getElementById("home-page-flight-list");
   isAdmin = isAdminParam;
   deleteFlight = deleteFlightFromHomePage;
   showPopup = showPopupFromHomePage;
   seeMore = seeMoreFromHomePage;
+  addFavorite = addFavoriteFromHomePage;
   updateFlightList(flightsArrFromHomePage);
 };
 
@@ -60,6 +63,9 @@ const createItem = (destination, description, price, img, id) => {
         <button type="button" class="btn btn-success w-100" id="listSeeMoreBtn-${id}">
           See More<i class="bi bi-arrow-right m-2"></i>
         </button>
+        <button type="button" class="btn btn-primary w-100" id="addToFavoritebtn-${id}">
+          Add to favorites<i class="bi bi-arrow-right m-2"></i>
+        </button>
         ${isAdmin ? adminBtns : ""}
         </div>
     </div>
@@ -89,6 +95,9 @@ const handleEditBtnClick = (ev) => {
 const handleShowMoreBtnClick = (ev) => {
   seeMore(getIdFromClick(ev));
 };
+const handleAddFavoriteBtnClick = (ev) => {
+  addFavorite(getIdFromClick(ev));
+};
 
 const clearEventListeners = (idKeyword, handleFunction) => {
   //get all old btns
@@ -106,6 +115,7 @@ const createList = () => {
   //clear event listeners for edit btns
   clearEventListeners("flightListEditBtn", handleEditBtnClick);
   clearEventListeners("listSeeMoreBtn", handleShowMoreBtnClick);
+  clearEventListeners("addToFavoritebtn", handleAddFavoriteBtnClick);
 
   //create new elements and remove old ones
   for (let flight of flightsArr) {
@@ -123,6 +133,7 @@ const createList = () => {
   // add event listeners for edit btns
   createBtnEventListener("flightListEditBtn", handleEditBtnClick);
   createBtnEventListener("listSeeMoreBtn", handleShowMoreBtnClick);
+  createBtnEventListener("addToFavoritebtn", handleAddFavoriteBtnClick);
 };
 
 //Creates event listener for the delete buttons
@@ -137,7 +148,9 @@ const createBtnEventListener = (idKeyword, handleFunction) => {
 export {
   initialFlightList,
   updateFlightList,
-  // clearEventListeners,
-  // createBtnEventListener,
-  // getIdFromClick,
+  createItem,
+  createList,
+  createBtnEventListener,
+  clearEventListeners,
+  handleAddFavoriteBtnClick,
 };

@@ -5,7 +5,7 @@ import validateDestination from "../validation/validateDestination.js";
 import validateImgUrl from "../validation/validateImgUrl.js";
 import validatePrice from "../validation/validatePrice.js";
 
-let selectedFlight;
+let selectedFlight, editFlight;
 
 let destinationInput = document.getElementById("editFlightPopupDestination");
 let descriptionInput = document.getElementById("editFlightPopupDescription");
@@ -21,7 +21,7 @@ let imgUrlOk = true;
 
 const editFlightPopup = document.getElementById("editFlightPopup");
 
-const initPopup = (selectedFlightFromHomePage, selectedFlight) => {
+const initPopup = (selectedFlightFromHomePage, editFlightFromHomePage) => {
   /*
     set data from selectedFlight to html
     */
@@ -30,6 +30,7 @@ const initPopup = (selectedFlightFromHomePage, selectedFlight) => {
   } else {
     selectedFlight = new Flight(getNextId(), "", 0, "", "");
   }
+  editFlight = editFlightFromHomePage;
   editFlightPopupImgDisplay.src = selectedFlight.imgUrl;
   destinationInput.value = selectedFlight.destination;
   descriptionInput.value = selectedFlight.description;
@@ -177,11 +178,20 @@ popupSaveBtn.addEventListener("click", () => {
   selectedFlight.description = descriptionInput.value;
   selectedFlight.price = priceInput.value;
   selectedFlight.imgUrl = imgUrlInput.value;
-  addNewFlight(selectedFlight);
+  editFlight();
   hidePopup();
 });
 imgUrlInput.addEventListener("input", () => {
   editFlightPopupImgDisplay.src = imgUrlInput.value;
 });
 console.log(popupSaveBtn);
-export { initPopup, showPopup, hidePopup };
+export {
+  initPopup,
+  showPopup,
+  hidePopup,
+  checkDescriptionInput,
+  checkIfCanEnableBtn,
+  checkImgUrlInput,
+  checkPriceInput,
+  checkDestinationInput,
+};

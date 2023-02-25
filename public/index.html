@@ -74,6 +74,14 @@
                 >Login</a
               >
             </form>
+               <button
+                    type="button"
+                    class="btn btn-primary"
+                    id="favorite-page-btn"
+                  >
+                    <i class="bi bi-cart-fill"></i>
+                  </button>
+            
             <form
               class="d-flex responsive-nav-flex d-none"
               role="search"
@@ -189,6 +197,13 @@
                     type="button"
                     class="btn btn-success"
                     id="editFlightPopupSaveBtn"
+                  >
+                    <i class="bi bi-check-circle-fill"></i> Save
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-info"
+                    id="addFlightPopupsaveBtn"
                   >
                     <i class="bi bi-check-circle-fill"></i> Save
                   </button>
@@ -688,6 +703,12 @@ Once you have registered, you can log in to your account using our login page. <
             <button class="btn btn-primary" id="login-btn">Submit</button>
           </form>
         </div>
+        <!-- Favorited page-->
+
+         <div id="favorites-page" class="d-none">
+            <ul class="list-group" id="favorite-page-flight-list"></ul>
+          </div>
+
         <!-- Profile Page -->
         <div id="profile-page" class="d-none">
           <section style="background-color: #eee">

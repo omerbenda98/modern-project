@@ -4,6 +4,7 @@ const PAGES = {
   REGISTER: "register-page",
   LOGIN: "login-page",
   PROFILE: "profile-page",
+  FAVORITES: "favorites-page",
   PAGE404: "page-not-found-page",
 };
 

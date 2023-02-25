@@ -6,6 +6,7 @@ import "./pages/LoginPage.js";
 import "./pages/ProfilePage.js";
 import { showNewPopup, addNewFlight } from "./pages/HomePage.js";
 import initializeNavbar from "./components/Navbar.js";
+import "./components/AddFlight.js";
 import checkIfConnected from "./utils/checkIfConnected.js";
 
 // console.log("🚀 ~ file: app.js:3 ~ handlePageChange", handlePageChange);
@@ -19,6 +20,7 @@ const navRegisterPageLink = document.getElementById("nav-register-page");
 const navLoginPageLink = document.getElementById("nav-login-page");
 const navEditProfilePage = document.getElementById("nav-edit-profile-page");
 const navLogout = document.getElementById("nav-logout");
+const navFavoritesLink = document.getElementById("favorite-page-btn");
 
 const aboutDisplaysBtnLink = document.getElementById("about-us-display-btn");
 const aboutRegisterBtnLink = document.getElementById("about-us-register-btn");
@@ -59,6 +61,9 @@ navLoginPageLink.addEventListener("click", function () {
 });
 navEditProfilePage.addEventListener("click", () => {
   handlePageChange(PAGES.PROFILE);
+});
+navFavoritesLink.addEventListener("click", function () {
+  handlePageChange(PAGES.FAVORITES);
 });
 navLogout.addEventListener("click", () => {
   localStorage.removeItem("token");

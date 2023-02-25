@@ -46,6 +46,7 @@ const setInitialData = () => {
     return;
   }
   localStorage.setItem("props", JSON.stringify(createData()));
+  localStorage.setItem("favorites", "");
   // localStorage.setItem("users", JSON.stringify(createUserData()));
   localStorage.setItem("nextid", id + "");
 };

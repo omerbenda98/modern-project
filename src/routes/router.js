@@ -6,6 +6,7 @@ const ABOUTUSPAGELINK = document.getElementById(PAGES.ABOUT);
 const LOGINTUSPAGELINK = document.getElementById(PAGES.LOGIN);
 const REGISTERUSPAGELINK = document.getElementById(PAGES.REGISTER);
 const PROFILEPAGELINK = document.getElementById(PAGES.PROFILE);
+const FAVORITESPAGELINK = document.getElementById(PAGES.FAVORITES);
 const PAGE404PAGELINK = document.getElementById(PAGES.PAGE404);
 
 function handlePageChange(pageToDisplay) {
@@ -15,12 +16,14 @@ function handlePageChange(pageToDisplay) {
   LOGINTUSPAGELINK.classList.remove("d-block");
   REGISTERUSPAGELINK.classList.remove("d-block");
   PROFILEPAGELINK.classList.remove("d-block");
+  FAVORITESPAGELINK.classList.remove("d-block");
   PAGE404PAGELINK.classList.remove("d-block");
   HOMEPAGELINK.classList.add("d-none");
   ABOUTUSPAGELINK.classList.add("d-none");
   LOGINTUSPAGELINK.classList.add("d-none");
   REGISTERUSPAGELINK.classList.add("d-none");
   PROFILEPAGELINK.classList.add("d-none");
+  FAVORITESPAGELINK.classList.add("d-none");
   PAGE404PAGELINK.classList.add("d-none");
 
   switch (pageToDisplay) {
@@ -44,6 +47,9 @@ function handlePageChange(pageToDisplay) {
       PROFILEPAGELINK.classList.remove("d-none");
       PROFILEPAGELINK.classList.add("d-block");
       break;
+    case PAGES.FAVORITES:
+      FAVORITESPAGELINK.classList.remove("d-none");
+      FAVORITESPAGELINK.classList.add("d-block");
     default:
       PAGE404PAGELINK.classList.remove("d-none");
       PAGE404PAGELINK.classList.add("d-block");
@@ -51,6 +57,4 @@ function handlePageChange(pageToDisplay) {
   }
 }
 
-function anotherFunction() {}
-
-export { handlePageChange, anotherFunction };
+export { handlePageChange };
