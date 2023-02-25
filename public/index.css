@@ -90,3 +90,14 @@
 .navbar img {
   width: 6rem;
 }
+.seeMore-wrapper .card {
+  height: 80%;
+  overflow: scroll;
+}
+.container {
+  background-image: linear-gradient(white, rgba(0, 0, 255, 0.488));
+  padding: 0;
+}
+.container-fluid {
+  background-image: linear-gradient(rgba(0, 0, 255, 0.608), white);
+}
