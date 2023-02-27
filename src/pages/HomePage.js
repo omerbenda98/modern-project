@@ -189,7 +189,6 @@ const editFlight = () => {
 
 const addFavorite = (id) => {
   let selectedFlight = flightsArr.find((item) => item.id === +id);
-
   if (favoritesArr) {
     favoritesArr = [...favoritesArr, selectedFlight];
     localStorage.setItem("favorites", JSON.stringify(favoritesArr));
