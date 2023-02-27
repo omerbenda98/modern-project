@@ -37,10 +37,10 @@ const updateFlightGallery = (flightsArrFromHomePage) => {
 };
 
 const createCard = (destination, description, price, img, id) => {
-  const adminBtns = `  <button type="button" class="btn btn-warning" id="flightGalleryEditBtn-${id}">
+  const adminBtns = `  <button type="button" class="btn btn-warning m-3" id="flightGalleryEditBtn-${id}">
     <i class="bi bi-pen-fill"></i> Edit
   </button>
-  <button type="button" class="btn btn-danger" id="flightGalleryDeleteBtn-${id}">
+  <button type="button" class="btn btn-danger m-3" id="flightGalleryDeleteBtn-${id}">
     <i class="bi bi-x-circle-fill"></i> Delete
   </button>
   `;
@@ -65,6 +65,10 @@ const createCard = (destination, description, price, img, id) => {
    <button type="button" class="btn btn-success" id="gallerySeeMoreBtn-${id}">
           See More<i class="bi bi-arrow-right m-2"></i>
         </button>
+         <button type="button" class="btn btn-primary" id="addToFavoritebtn-${id}">
+          Add to favorites<i class="bi bi-arrow-right m-2"></i>
+        </button>
+
         ${isAdmin ? adminBtns : ""}
       </div>
     </div>

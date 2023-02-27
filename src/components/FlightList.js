@@ -153,4 +153,5 @@ export {
   createBtnEventListener,
   clearEventListeners,
   handleAddFavoriteBtnClick,
+  getIdFromClick,
 };

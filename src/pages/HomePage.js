@@ -63,7 +63,7 @@ window.addEventListener("load", () => {
     addFavorite
   );
   initialFlightCarousel(flightsArr);
-  initialFavoritesList(favoritesArr, addFavorite);
+  initialFavoritesList(favoritesArr, addFavorite, removeFavorite);
   initializeElements();
   initializeBtns();
 });
@@ -196,6 +196,13 @@ const addFavorite = (id) => {
   } else {
     localStorage.setItem("favorites", JSON.stringify(selectedFlight));
   }
+  updateFavoritesPage(favoritesArr);
+};
+
+const removeFavorite = (id) => {
+  id = +id;
+  favoritesArr = favoritesArr.filter((item) => item.id !== id);
+  console.log(favoritesArr);
   updateFavoritesPage(favoritesArr);
 };
 

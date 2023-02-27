@@ -2,18 +2,22 @@ import {
   clearEventListeners,
   createBtnEventListener,
   handleAddFavoriteBtnClick,
+  getIdFromClick,
 } from "../components/FlightList.js";
 
 let favoritesArr = localStorage.getItem("favorites");
 let favoritesDiv;
+let removeFavorite;
 let addFavorite;
 
 const initialFavoritesList = (
   favoritesArrFromHomePage,
-  addFavoriteFromHomePage
+  addFavoriteFromHomePage,
+  removeFavoriteFromHomePage
 ) => {
   favoritesDiv = document.getElementById("favorite-page-flight-list");
   addFavorite = addFavoriteFromHomePage;
+  removeFavorite = removeFavoriteFromHomePage;
   updateFavoritesPage(favoritesArrFromHomePage);
 };
 const updateFavoritesPage = (favoritesArrFromHomePage) => {
@@ -58,6 +62,10 @@ const createItem = (destination, description, price, img, id) => {
   `;
 };
 
+const handleRemoveFavoriteBtnClick = (ev) => {
+  removeFavorite(getIdFromClick(ev));
+};
+
 const createList = () => {
   let innerStr = "";
   //clear event listeners for delete btns
@@ -66,6 +74,7 @@ const createList = () => {
   // clearEventListeners("flightListEditBtn", handleEditBtnClick);
   // clearEventListeners("listSeeMoreBtn", handleShowMoreBtnClick);
   clearEventListeners("addToFavoritebtn", handleAddFavoriteBtnClick);
+  clearEventListeners("favoritesRemoveBtn", handleRemoveFavoriteBtnClick);
 
   //create new elements and remove old ones
   for (let favorite of favoritesArr) {
@@ -84,6 +93,7 @@ const createList = () => {
   // createBtnEventListener("flightListEditBtn", handleEditBtnClick);
   // createBtnEventListener("listSeeMoreBtn", handleShowMoreBtnClick);
   createBtnEventListener("addToFavoritebtn", handleAddFavoriteBtnClick);
+  createBtnEventListener("favoritesRemoveBtn", handleRemoveFavoriteBtnClick);
 };
 
 // const removeFavorite = () =>{
