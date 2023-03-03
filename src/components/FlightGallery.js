@@ -1,16 +1,10 @@
-// import {
-//   clearEventListeners,
-//   createBtnEventListener,
-//   getIdFromClick,
-// } from "./PropertiesList.js";
-
 let flightsArr;
 let galleryDiv;
 let isAdmin;
 let deleteFlight;
 let showPopup;
 let seeMore;
-//this function will transfer data from homepage to this page
+
 const initialFlightGallery = (
   flightsArrFromHomePage,
   isAdminParam,
@@ -27,11 +21,6 @@ const initialFlightGallery = (
 };
 
 const updateFlightGallery = (flightsArrFromHomePage) => {
-  /*
-    this function will get data from homepage and create new gallery.
-    if the gallery already exists it will remove the old one and
-    create new one
-  */
   flightsArr = flightsArrFromHomePage;
   createGallery();
 };
@@ -78,12 +67,8 @@ const createCard = (destination, description, price, img, id) => {
 
 const getIdFromClick = (ev) => {
   let idFromId = ev.target.id.split("-");
-  // split the id to array
+
   if (!ev.target.id) {
-    /*
-        if press on icon then there is no id
-        then we need to take the id of the parent which is btn
-      */
     idFromId = ev.target.parentElement.id.split("-");
   }
   return idFromId[1];
@@ -101,9 +86,8 @@ const handleShowMoreBtnClick = (ev) => {
 };
 
 const clearEventListeners = (idKeyword, handleFunction) => {
-  //get all old btns
   let btnsBefore = document.querySelectorAll(`[id^='${idKeyword}-']`);
-  //remove old events
+
   for (let btn of btnsBefore) {
     btn.removeEventListener("click", handleFunction);
   }
@@ -111,9 +95,7 @@ const clearEventListeners = (idKeyword, handleFunction) => {
 const createGallery = () => {
   let innerStr = "";
 
-  //clear event listeners for delete btns
   clearEventListeners("flightGalleryDeleteBtn", handleDeleteBtnClick);
-  //clear event listeners for edit btns
   clearEventListeners("flightGalleryEditBtn", handleEditBtnClick);
   clearEventListeners("gallerySeeMoreBtn", handleShowMoreBtnClick);
 
@@ -127,13 +109,12 @@ const createGallery = () => {
     );
   }
   galleryDiv.innerHTML = innerStr;
-  // add event listeners for delete btns
+
   createBtnEventListener("flightGalleryDeleteBtn", handleDeleteBtnClick);
-  // add event listeners for edit btns
   createBtnEventListener("flightGalleryEditBtn", handleEditBtnClick);
   createBtnEventListener("gallerySeeMoreBtn", handleShowMoreBtnClick);
 };
-//Creates event listener for the delete buttons
+//Creates event listener for the buttons
 const createBtnEventListener = (idKeyword, handleFunction) => {
   let btns = document.querySelectorAll(`[id^='${idKeyword}-']`);
 

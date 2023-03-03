@@ -15,6 +15,7 @@ const inputZip = document.getElementById("profile-input-zip");
 const inputEmail = document.getElementById("profile-input-email");
 const inputPhone = document.getElementById("profile-input-phone");
 const inputPassword = document.getElementById("profile-input-password");
+const inputCheckBox = document.getElementById("profile-input-adminCheckBox");
 
 let firstNameDisplay = document.getElementById("profile-firstName-display");
 let lastNameDisplay = document.getElementById("profile-lastName-display");
@@ -44,8 +45,7 @@ window.addEventListener("load", () => {
   let token = localStorage.getItem("token");
 
   if (users && token) {
-    //we have users
-    users = JSON.parse(users); // convert from string to array of objects
+    users = JSON.parse(users);
     token = JSON.parse(token);
     let user = users.find((item) => item.id === token.id);
     if (user) {
@@ -114,7 +114,7 @@ window.addEventListener("load", () => {
       }
     });
   });
-  //when page loaded
+
   if (inputFirstName.value !== "") {
     checkFirstNameInput();
   }
@@ -148,14 +148,12 @@ inputPassword.addEventListener("input", () => {
 
 const checkFirstNameInput = () => {
   let errorArr = validateName(inputFirstName.value);
-  //   console.log(reg.test(inputName.value));
+
   if (errorArr.length === 0) {
-    //the text is ok
     inputFirstName.classList.remove("is-invalid");
     document.getElementById("profile-alert-firstName").classList.add("d-none");
     firstNameOk = true;
   } else {
-    //the text is not ok
     inputFirstName.classList.add("is-invalid");
     document
       .getElementById("profile-alert-firstName")
@@ -170,12 +168,10 @@ const checkFirstNameInput = () => {
 const checkEmailInput = () => {
   let errorArr = validateEmail(inputEmail.value);
   if (errorArr.length === 0) {
-    //the text is ok
     inputEmail.classList.remove("is-invalid");
     document.getElementById("profile-alert-email").classList.add("d-none");
     emailOk = true;
   } else {
-    //the text is not ok
     inputEmail.classList.add("is-invalid");
     document.getElementById("profile-alert-email").classList.remove("d-none");
     document.getElementById("profile-alert-email").innerHTML =
@@ -188,12 +184,10 @@ const checkEmailInput = () => {
 const checkPasswordInput = () => {
   let errorArr = validatePassword(inputPassword.value);
   if (errorArr.length === 0) {
-    //the text is ok
     inputPassword.classList.remove("is-invalid");
     document.getElementById("profile-alert-password").classList.add("d-none");
     passwordOk = true;
   } else {
-    //the text is not ok
     inputPassword.classList.add("is-invalid");
     document
       .getElementById("profile-alert-password")
@@ -208,12 +202,10 @@ const checkPasswordInput = () => {
 const checkLastNameInput = () => {
   let errorArr = validateName(inputLastName.value);
   if (errorArr.length === 0) {
-    //the text is ok
     inputLastName.classList.remove("is-invalid");
     document.getElementById("profile-alert-lastName").classList.add("d-none");
     lastNameOk = true;
   } else {
-    //the text is not ok
     inputLastName.classList.add("is-invalid");
     document
       .getElementById("profile-alert-lastName")
@@ -235,19 +227,16 @@ const checkIfCanEnableBtn = () =>
 
 saveProfileBtn.addEventListener("click", () => {
   if (!(firstNameOk && emailOk && passwordOk && lastNameOk)) {
-    //if someone changed the html from dev tools
     return;
   }
   let users = localStorage.getItem("users");
   let token = localStorage.getItem("token");
   if (users && token) {
-    //we have users
-    users = JSON.parse(users); // convert from string to array of objects
+    users = JSON.parse(users);
     token = JSON.parse(token);
     let userEmail = users.find((item) => item.email === inputEmail.value);
     let user = users.find((item) => item.id === token.id);
     if (userEmail && user.id !== userEmail.id) {
-      //the email already token
       showToast("The email already taken", false);
       return;
     }
@@ -263,6 +252,8 @@ saveProfileBtn.addEventListener("click", () => {
       user.houseNum = inputHouseNum.value;
       user.zip = inputZip.value;
       user.phone = inputPhone.value;
+      user.admin = inputCheckBox.checked;
+      token.isAdmin = inputCheckBox.checked;
 
       localStorage.setItem("users", JSON.stringify(users));
       localStorage.setItem("token", JSON.stringify(token));

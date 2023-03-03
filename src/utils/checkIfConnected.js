@@ -4,7 +4,7 @@ const checkIfConnected = () => {
     return false;
   }
   token = JSON.parse(token);
-  return !!token; //convert to boolean
+  return !!token;
 };
 
 export default checkIfConnected;

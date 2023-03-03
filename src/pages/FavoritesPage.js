@@ -26,14 +26,6 @@ const updateFavoritesPage = (favoritesArrFromHomePage) => {
 };
 
 const createItem = (destination, description, price, img, id) => {
-  const adminBtns = `
-  <button type="button" class="btn btn-warning w-100" id="flightListEditBtn-${id}">
-    <i class="bi bi-pen-fill"></i> Edit
-  </button>
-  <button type="button" class="btn btn-danger w-100" id="flightListDeleteBtn-${id}">
-    <i class="bi bi-x-circle-fill"></i> Delete
-  </button>
-  `;
   return `
   <li class="list-group-item">
     <div class="row">
@@ -68,15 +60,10 @@ const handleRemoveFavoriteBtnClick = (ev) => {
 
 const createList = () => {
   let innerStr = "";
-  //clear event listeners for delete btns
-  // clearEventListeners("flightListDeleteBtn", handleDeleteBtnClick);
-  // //clear event listeners for edit btns
-  // clearEventListeners("flightListEditBtn", handleEditBtnClick);
-  // clearEventListeners("listSeeMoreBtn", handleShowMoreBtnClick);
+
   clearEventListeners("addToFavoritebtn", handleAddFavoriteBtnClick);
   clearEventListeners("favoritesRemoveBtn", handleRemoveFavoriteBtnClick);
 
-  //create new elements and remove old ones
   for (let favorite of favoritesArr) {
     innerStr += createItem(
       favorite.destination,
@@ -87,17 +74,9 @@ const createList = () => {
     );
   }
   favoritesDiv.innerHTML = innerStr;
-  // add event listeners for delete btns
-  // createBtnEventListener("flightListDeleteBtn", handleDeleteBtnClick);
-  // // add event listeners for edit btns
-  // createBtnEventListener("flightListEditBtn", handleEditBtnClick);
-  // createBtnEventListener("listSeeMoreBtn", handleShowMoreBtnClick);
+
   createBtnEventListener("addToFavoritebtn", handleAddFavoriteBtnClick);
   createBtnEventListener("favoritesRemoveBtn", handleRemoveFavoriteBtnClick);
 };
-
-// const removeFavorite = () =>{
-
-// }
 
 export { initialFavoritesList, updateFavoritesPage };

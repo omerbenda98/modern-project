@@ -1,10 +1,8 @@
-import { handlePageChange } from "../routes/router.js";
 import checkIfAdmin from "../utils/checkIfAdmin.js";
 import checkIfConnected from "../utils/checkIfConnected.js";
 import getNextId from "../utils/getNextId.js";
 
 let nextId;
-let newFlight;
 let isAdmin;
 let isConnected;
 let showNewPopup;
@@ -26,7 +24,7 @@ const initializeNavbar = (showNewPopupFromHomePage, addFlightFromHomePage) => {
   }
   showNewPopup = showNewPopupFromHomePage;
   addNewFlight = addFlightFromHomePage;
-  /* nav */
+
   navAddNewFlightLink = document.getElementById("nav-add-new-flight-link");
   if (!isAdmin) {
     navAddNewFlightLink.classList.add("d-none");

@@ -9,10 +9,6 @@ import initializeNavbar from "./components/Navbar.js";
 import "./components/AddFlight.js";
 import checkIfConnected from "./utils/checkIfConnected.js";
 
-// console.log("🚀 ~ file: app.js:3 ~ handlePageChange", handlePageChange);
-
-// console.log(PAGES);
-
 const navLogo = document.getElementById("navLogo");
 const navHomeLink = document.getElementById("nav-home-link");
 const navAboutusLink = document.getElementById("nav-aboutus-link");

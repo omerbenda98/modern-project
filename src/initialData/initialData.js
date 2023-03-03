@@ -2,7 +2,6 @@ import Flight from "../models/Flight.js";
 import User from "../models/User.js";
 
 let id = 1;
-let nextUserId = 1;
 
 const createData = () => {
   let flightsArr = [
@@ -31,13 +30,27 @@ const createData = () => {
   return flightsArr;
 };
 
-// const createUserData = () => {
-//   let intitialUsersArr = [
-//     new User("1", "Omer", "omerbenda98@gmail.com", "Omerbenda98!"),
-//     new User("2", "Benda", "benda98@gmail.com", "Omerbenda98!"),
-//   ];
-//   return intitialUsersArr;
-// };
+const createUserData = () => {
+  let intitialUsersArr = [
+    new User(
+      "1",
+      "Omer",
+      "Ben-David",
+      "israel",
+      "israel",
+      "modiin",
+      "shimon peres",
+      "26",
+      "7179902",
+      "omerbenda98@gmail.com",
+      "0547563977",
+      "Omerbenda98!",
+
+      true
+    ),
+  ];
+  return intitialUsersArr;
+};
 
 const setInitialData = () => {
   let flights = localStorage.getItem("props");
@@ -47,7 +60,7 @@ const setInitialData = () => {
   }
   localStorage.setItem("props", JSON.stringify(createData()));
   localStorage.setItem("favorites", "");
-  // localStorage.setItem("users", JSON.stringify(createUserData()));
+  localStorage.setItem("users", JSON.stringify(createUserData()));
   localStorage.setItem("nextid", id + "");
 };
 

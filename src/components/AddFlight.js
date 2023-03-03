@@ -8,7 +8,6 @@ import {
   checkPriceInput,
   hidePopup,
 } from "./Popup.js";
-// import { editFlight } from "../pages/HomePage.js";
 
 let destinationInput = document.getElementById("editFlightPopupDestination");
 let descriptionInput = document.getElementById("editFlightPopupDescription");
@@ -49,6 +48,7 @@ imgUrlInput.addEventListener("input", () => {
   checkImgUrlInput();
 });
 popupSaveBtn.addEventListener("click", () => {
+  console.log("here");
   newFlight = new Flight(
     getNextId(),
     destinationInput.value,
@@ -56,7 +56,6 @@ popupSaveBtn.addEventListener("click", () => {
     descriptionInput.value,
     imgUrlInput.value
   );
-  console.log(newFlight);
   addNewFlight(newFlight);
   hidePopup();
 });

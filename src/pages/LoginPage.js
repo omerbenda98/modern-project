@@ -10,38 +10,26 @@ const loginBtn = document.querySelector("#login-btn");
 loginEmailInput.addEventListener("input", () => {
   let errorArr = validateEmail(loginEmailInput.value);
   if (errorArr.length === 0) {
-    //no error
     loginEmailInput.classList.remove("is-invalid");
     document.getElementById("login-alert-email").classList.add("d-none");
   } else {
-    // error/s
     loginEmailInput.classList.add("is-invalid");
     document.getElementById("login-alert-email").classList.remove("d-none");
     document.getElementById("login-alert-email").innerHTML =
       errorArr.join("<br>");
-    /*
-        let str = errorArr.join("<br>")
-        document.getElementById("login-alert-email").innerHTML = str
-      */
   }
 });
 
 loginPasswordInput.addEventListener("input", () => {
   let errorArr = validatePassword(loginPasswordInput.value);
   if (errorArr.length === 0) {
-    //no error
     loginPasswordInput.classList.remove("is-invalid");
     document.getElementById("login-alert-password").classList.add("d-none");
   } else {
-    // error/s
     loginPasswordInput.classList.add("is-invalid");
     document.getElementById("login-alert-password").classList.remove("d-none");
     document.getElementById("login-alert-password").innerHTML =
       errorArr.join("<br>");
-    /*
-        let str = errorArr.join("<br>")
-        document.getElementById("login-alert-password").innerHTML = str
-      */
   }
 });
 
@@ -54,7 +42,6 @@ loginBtn.addEventListener("click", () => {
   }
   let users = JSON.parse(localStorage.getItem("users"));
   if (!users) {
-    //users === null
     return;
   }
   let user = users.find(
@@ -66,7 +53,7 @@ loginBtn.addEventListener("click", () => {
     console.log("invalid email and/or password");
     return;
   }
-  //remember who connected
+
   localStorage.setItem(
     "token",
     JSON.stringify({
@@ -76,6 +63,6 @@ loginBtn.addEventListener("click", () => {
       isAdmin: user.isAdmin,
     })
   );
-  // handlePageChange(PAGES.HOME);
-  location.reload(); // refresh the page
+
+  location.reload();
 });

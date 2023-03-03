@@ -11,20 +11,16 @@ let destinationInput = document.getElementById("editFlightPopupDestination");
 let descriptionInput = document.getElementById("editFlightPopupDescription");
 let priceInput = document.getElementById("editFlightPopupPrice");
 let imgUrlInput = document.getElementById("editFlightPopupImg");
-let popupSaveBtn = document.getElementById("editFlightPopupSaveBtn");
+let editPopupSaveBtn = document.getElementById("editFlightPopupSaveBtn");
 
 let priceOk = true;
 let descriptionOk = true;
 let destinationOk = true;
 let imgUrlOk = true;
-// popupSaveBtn.disabled = false;
 
 const editFlightPopup = document.getElementById("editFlightPopup");
 
 const initPopup = (selectedFlightFromHomePage, editFlightFromHomePage) => {
-  /*
-    set data from selectedFlight to html
-    */
   if (selectedFlightFromHomePage) {
     selectedFlight = selectedFlightFromHomePage;
   } else {
@@ -91,14 +87,12 @@ imgUrlInput.addEventListener("input", () => {
 
 const checkDestinationInput = () => {
   let errorArr = validateDestination(destinationInput.value);
-  //   console.log(reg.test(inputName.value));
+
   if (errorArr.length === 0) {
-    //the text is ok
     destinationInput.classList.remove("is-invalid");
     document.getElementById("popup-alert-destination").classList.add("d-none");
     destinationOk = true;
   } else {
-    //the text is not ok
     destinationInput.classList.add("is-invalid");
     document
       .getElementById("popup-alert-destination")
@@ -113,12 +107,10 @@ const checkDestinationInput = () => {
 const checkDescriptionInput = () => {
   let errorArr = validateDescription(descriptionInput.value);
   if (errorArr.length === 0) {
-    //the text is ok
     descriptionInput.classList.remove("is-invalid");
     document.getElementById("popup-alert-description").classList.add("d-none");
     descriptionOk = true;
   } else {
-    //the text is not ok
     descriptionInput.classList.add("is-invalid");
     document
       .getElementById("popup-alert-description")
@@ -133,12 +125,10 @@ const checkDescriptionInput = () => {
 const checkPriceInput = () => {
   let errorArr = validatePrice(priceInput.value);
   if (errorArr.length === 0) {
-    //the text is ok
     priceInput.classList.remove("is-invalid");
     document.getElementById("popup-alert-price").classList.add("d-none");
     priceOk = true;
   } else {
-    //the text is not ok
     priceInput.classList.add("is-invalid");
     document.getElementById("popup-alert-price").classList.remove("d-none");
     document.getElementById("popup-alert-price").innerHTML =
@@ -150,12 +140,10 @@ const checkPriceInput = () => {
 const checkImgUrlInput = () => {
   let errorArr = validateImgUrl(imgUrlInput.value);
   if (errorArr.length === 0) {
-    //the text is ok
     imgUrlInput.classList.remove("is-invalid");
     document.getElementById("popup-alert-imgUrl").classList.add("d-none");
     imgUrlOk = true;
   } else {
-    //the text is not ok
     imgUrlInput.classList.add("is-invalid");
     document.getElementById("popup-alert-imgUrl").classList.remove("d-none");
     document.getElementById("popup-alert-imgUrl").innerHTML =
@@ -166,14 +154,14 @@ const checkImgUrlInput = () => {
 };
 
 const checkIfCanEnableBtn = () =>
-  (popupSaveBtn.disabled = !(
+  (editPopupSaveBtn.disabled = !(
     destinationOk &&
     priceOk &&
     descriptionOk &&
     imgUrlOk
   ));
 
-popupSaveBtn.addEventListener("click", () => {
+editPopupSaveBtn.addEventListener("click", () => {
   selectedFlight.destination = destinationInput.value;
   selectedFlight.description = descriptionInput.value;
   selectedFlight.price = priceInput.value;
@@ -184,7 +172,7 @@ popupSaveBtn.addEventListener("click", () => {
 imgUrlInput.addEventListener("input", () => {
   editFlightPopupImgDisplay.src = imgUrlInput.value;
 });
-console.log(popupSaveBtn);
+
 export {
   initPopup,
   showPopup,

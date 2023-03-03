@@ -12,7 +12,6 @@ import {
 } from "../components/FlightCarousel.js";
 import { initialFavoritesList, updateFavoritesPage } from "./FavoritesPage.js";
 import { initPopup } from "../components/Popup.js";
-// import { initAddFlightPopup } from "../components/Popup.js";
 import { initSeeMore } from "../components/SeeMore.js";
 import checkIfAdmin from "../utils/checkIfAdmin.js";
 
@@ -20,11 +19,10 @@ let flightsArr, originalFlightsArr;
 let displayNow; // display that we can see now
 let favoritesArr;
 
-/* btns */
 let homeDisplayList;
 let homeDisplayGallery;
 let homeDisplayCarousel;
-/* displays */
+
 let flightGallery;
 let flightList;
 let flightCarousel;
@@ -45,7 +43,7 @@ window.addEventListener("load", () => {
   flightsArr = JSON.parse(flightsArr);
   originalFlightsArr = [...flightsArr];
   isAdmin = checkIfAdmin();
-  //passing flightsArr to flightGallery.js
+
   initialFlightGallery(
     flightsArr,
     isAdmin,
@@ -69,7 +67,7 @@ window.addEventListener("load", () => {
 });
 
 const initializeElements = () => {
-  /* btns */
+  /* Display btns */
   homeDisplayList = document.getElementById("homeDisplayList");
   homeDisplayGallery = document.getElementById("homeDisplayGallery");
   homeDisplayCarousel = document.getElementById("homeDisplayCarousel");
@@ -107,7 +105,6 @@ const initializeBtns = () => {
       let regex = new RegExp("^" + ev.target.value, "i");
       flightsArr = originalFlightsArr.filter((item) => {
         let reg = regex.test(item.name);
-        // console.log("item.name", item.name, " reg", reg);
         return reg;
       });
       updateDisplays();
@@ -126,9 +123,9 @@ const displayToDisplay = (toDisplay) => {
 };
 
 const updateDisplays = () => {
-  updateFlightGallery(flightsArr); // update gallery
-  updateFlightList(flightsArr); // update list
-  updateFlightCarousel(flightsArr); // update carousel
+  updateFlightGallery(flightsArr);
+  updateFlightList(flightsArr);
+  updateFlightCarousel(flightsArr);
 };
 
 const saveToLocalStorage = (arrToSave) => {
@@ -136,19 +133,17 @@ const saveToLocalStorage = (arrToSave) => {
 };
 
 const deleteFlight = (id) => {
-  id = +id; //convert string to number
+  id = +id;
   originalFlightsArr = originalFlightsArr.filter((item) => item.id !== id);
   saveToLocalStorage(originalFlightsArr);
-  flightsArr = flightsArr.filter((item) => item.id !== id); //delete property by index
+  flightsArr = flightsArr.filter((item) => item.id !== id);
   updateDisplays();
 };
 
 const sortFlights = (asc = true) => {
   if (asc) {
-    // from a to z
     flightsArr.sort((a, b) => a.name.localeCompare(b.name));
   } else {
-    // from z to a
     flightsArr.sort((a, b) => b.name.localeCompare(a.name));
   }
   updateDisplays();
@@ -201,7 +196,6 @@ const addFavorite = (id) => {
 const removeFavorite = (id) => {
   id = +id;
   favoritesArr = favoritesArr.filter((item) => item.id !== id);
-  console.log(favoritesArr);
   updateFavoritesPage(favoritesArr);
 };
 

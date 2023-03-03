@@ -7,9 +7,6 @@ const seeMorePrice = document.getElementById("list-see-more-price");
 const seeMoreContainer = document.getElementById("list-see-more-container");
 
 const initSeeMore = (selectedFlightFromHomePage) => {
-  /*
-    set data from selectedFlight to html
-    */
   if (selectedFlightFromHomePage) {
     selectedFlight = selectedFlightFromHomePage;
   } else {

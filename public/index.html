@@ -94,7 +94,7 @@
                 >Logout</a
               >
             </form>
-            <!-- <form class="d-flex responsive-mt" role="search"></form> -->
+           
           </div>
         </div>
       </nav>
@@ -631,9 +631,7 @@ Once you have registered, you can log in to your account using our login page. <
                           </div>
 
                           <div class="d-flex justify-content-end pt-3">
-                            <button type="button" class="btn btn-light btn-lg">
-                              Reset all
-                            </button>
+
                             <button
                               type="button"
                               id="register-save-btn"
@@ -708,11 +706,9 @@ Once you have registered, you can log in to your account using our login page. <
                     class="bg-light rounded-3 p-3 mb-4"
                   >
                     <ol class="breadcrumb mb-0">
-                      <li class="breadcrumb-item"><a href="#">Home</a></li>
-                      <li class="breadcrumb-item"><a href="#">User</a></li>
-                      <li class="breadcrumb-item active" aria-current="page">
-                        User Profile
-                      </li>
+                      <li class="breadcrumb-item">Home</li>
+                      <li class="breadcrumb-item">User</li>
+                  
                     </ol>
                   </nav>
                 </div>
@@ -934,19 +930,20 @@ Once you have registered, you can log in to your account using our login page. <
                       >
                         Password rules
                       </div>
-                    </div>
-
-
-                    </div>
-                    <div class="mb-3 form-check">
+                        <div class="mb-3 form-check">
                       <input
                         type="checkbox"
-                        class="form-check-input"
-                        id="adminCheckBox"
+                        class="form-check-input d-none"
+                        id="profile-input-adminCheckBox"
                       />
-                      <label class="form-check-label" for="adminCheckBox"
+                      <label class="form-check-label d-none" id="profile-input-checkbox-label" for="profile-input-adminCheckBox"
                         >Business client</label
                       >
+                    </div>
+                  
+                    </div>
+
+
                     </div>
                   
                     <button
@@ -974,12 +971,73 @@ Once you have registered, you can log in to your account using our login page. <
             </div>
           </section>
         </div>
-        <!-- 404 Page not found Page -->
+
         <div id="page-not-found-page" class="d-none"></div>
       </main>
-      <footer class="border-top pt-3 d-flex justify-content-center">
-       Created by Omer Ben-David 2023©️
-      </footer>
+   <footer class="bg-light text-center text-white">
+
+  <div class="container p-4 pb-0">
+
+    <section class="mb-4">
+
+      <a
+        class="btn text-white btn-floating m-1"
+        style="background-color: #3b5998;"
+        href="#!"
+        role="button"
+        ><i class="bi bi-facebook"></i></a>
+
+
+      <a
+        class="btn text-white btn-floating m-1"
+        style="background-color: #55acee;"
+        href="#!"
+        role="button"
+        ><i class="bi bi-twitter"></i
+      ></a>
+
+
+      <a
+        class="btn text-white btn-floating m-1"
+        style="background-color: #dd4b39;"
+        href="#!"
+        role="button"
+        ><i class="bi bi-google"></i
+      ></a>
+
+
+      <a
+        class="btn text-white btn-floating m-1"
+        style="background-color: #ac2bac;"
+        href="#!"
+        role="button"
+        ><i class="bi bi-instagram"></i
+      ></a>
+
+
+      <a
+        class="btn text-white btn-floating m-1"
+        style="background-color: #0082ca;"
+        href="#!"
+        role="button"
+        ><i class="bi bi-linkedin"></i
+      ></a>
+
+      <a
+        class="btn text-white btn-floating m-1"
+        style="background-color: #333333;"
+        href="#!"
+        role="button"
+        ><i class="bi bi-github"></i
+      ></a>
+    </section>
+      <div class="text-center p-3" >
+    © 2023 Copyright: Omer Ben David
+  </div>
+
+  </div>
+
+</footer> 
     </div>
     <script src="../src/app.js" type="module"></script>
   </body>

@@ -1,8 +1,8 @@
 let flightsArr;
 let carouselDiv;
-let showIdx; //index(array) of the image that we display now
+let showIdx;
 let animationStarted;
-//this function will transfer data from homepage to this page
+
 const initialFlightCarousel = (flightsArrFromHomePage) => {
   carouselDiv = document.getElementById("home-page-flights-carousel");
   initializeBtns();
@@ -10,11 +10,6 @@ const initialFlightCarousel = (flightsArrFromHomePage) => {
 };
 
 const updateFlightCarousel = (flightsArrFromHomePage) => {
-  /*
-    this function will get data from homepage and create new carousel.
-    if the carousel already exists it will remove the old one and
-    create new one
-  */
   showIdx = 0;
   animationStarted = 0;
   flightsArr = flightsArrFromHomePage;
@@ -29,14 +24,14 @@ const initializeBtns = () => {
     animationStarted = 2;
     let prevIdx = showIdx - 1;
     if (prevIdx < 0) {
-      prevIdx = flightsArr.length - 1; //last image
+      prevIdx = flightsArr.length - 1;
     }
     let imgToHide = document.querySelector(
       `.img-container > img:nth-child(${showIdx + 1})`
     );
     imgToHide.classList.add("fade-out");
     const hideImgAnim = () => {
-      imgToHide.removeEventListener("animationend", hideImgAnim); //remove event after executed
+      imgToHide.removeEventListener("animationend", hideImgAnim);
       imgToHide.classList.add("opacity-0");
       imgToHide.classList.remove("fade-out");
       animationStarted--;
@@ -50,16 +45,12 @@ const initializeBtns = () => {
     imgToShow.addEventListener(
       "animationend",
       () => {
-        // imgToShow.classList.remove("opacity-0");
         imgToShow.classList.remove("fade-in");
         animationStarted--;
       },
       { once: true }
     );
-    // showIdx++;
-    // if (showIdx >= flightsArr.length) {
-    //   showIdx = 0;
-    // }
+
     showIdx = prevIdx;
   });
   document.getElementById("next-carusel-btn").addEventListener("click", () => {
@@ -68,8 +59,6 @@ const initializeBtns = () => {
     }
     animationStarted = 2;
     let nextIdx = showIdx + 1;
-    //showIdx = index of image to hide
-    //nextIdx = index of image to display
     if (nextIdx >= flightsArr.length) {
       nextIdx = 0;
     }
@@ -78,7 +67,7 @@ const initializeBtns = () => {
     );
     imgToHide.classList.add("fade-out");
     const hideImgAnim = () => {
-      imgToHide.removeEventListener("animationend", hideImgAnim); //remove event after executed
+      imgToHide.removeEventListener("animationend", hideImgAnim);
       imgToHide.classList.add("opacity-0");
       imgToHide.classList.remove("fade-out");
       animationStarted--;
@@ -92,22 +81,17 @@ const initializeBtns = () => {
     imgToShow.addEventListener(
       "animationend",
       () => {
-        // imgToShow.classList.remove("opacity-0");
         imgToShow.classList.remove("fade-in");
         animationStarted--;
       },
       { once: true }
     );
-    // showIdx++;
-    // if (showIdx >= flightsArr.length) {
-    //   showIdx = 0;
-    // }
+
     showIdx = nextIdx;
   });
 };
 
 const createItem = (destination, img) => {
-  //opacity-0 hide image
   return `
       <img src="${img}" alt="${destination}" class="opacity-0" />
   `;
@@ -119,7 +103,7 @@ const createCarousel = () => {
     innerStr += createItem(flight.destination, flight.imgUrl);
   }
   carouselDiv.innerHTML = innerStr;
-  //show the first img
+
   document
     .querySelector(".img-container > img:nth-child(1)")
     .classList.remove("opacity-0");
