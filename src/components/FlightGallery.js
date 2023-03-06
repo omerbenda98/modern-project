@@ -1,3 +1,5 @@
+import { handleAddFavoriteBtnClick } from "./FlightList.js";
+
 let flightsArr;
 let galleryDiv;
 let isAdmin;
@@ -26,22 +28,22 @@ const updateFlightGallery = (flightsArrFromHomePage) => {
 };
 
 const createCard = (destination, description, price, img, id) => {
-  const adminBtns = `  <button type="button" class="btn btn-warning m-3" id="flightGalleryEditBtn-${id}">
+  const adminBtns = `  <button type="button" class="btn btn-warning w-25" id="flightGalleryEditBtn-${id}">
     <i class="bi bi-pen-fill"></i> Edit
   </button>
-  <button type="button" class="btn btn-danger m-3" id="flightGalleryDeleteBtn-${id}">
+  <button type="button" class="btn btn-danger w-25" id="flightGalleryDeleteBtn-${id}">
     <i class="bi bi-x-circle-fill"></i> Delete
   </button>
   `;
   return `
   <div class="col">
-    <div class="card">
+    <div class="card h-100">
       <img
         src="${img}"
         class="card-img-top"
         alt="${destination}"
       />
-      <div class="card-body">
+      <div class="card-body h-50">
         <h5 class="card-title">${destination}</h5>
         <p class="card-text">
           ${description}
@@ -50,12 +52,12 @@ const createCard = (destination, description, price, img, id) => {
       <ul class="list-group list-group-flush">
         <li class="list-group-item">${price}</li>
       </ul>
-      <div class="card-body">
-   <button type="button" class="btn btn-success" id="gallerySeeMoreBtn-${id}">
-          See More<i class="bi bi-arrow-right m-2"></i>
+      <div class="card-body d-flex">
+   <button type="button" class="btn btn-success w-25 " id="gallerySeeMoreBtn-${id}">
+          See More
         </button>
-         <button type="button" class="btn btn-primary" id="addToFavoritebtn-${id}">
-          Add to favorites<i class="bi bi-arrow-right m-2"></i>
+         <button type="button" class="btn btn-primary w-25 " id="galleryAddToFavoriteBtn-${id}">
+          Add to favorites
         </button>
 
         ${isAdmin ? adminBtns : ""}
@@ -98,6 +100,7 @@ const createGallery = () => {
   clearEventListeners("flightGalleryDeleteBtn", handleDeleteBtnClick);
   clearEventListeners("flightGalleryEditBtn", handleEditBtnClick);
   clearEventListeners("gallerySeeMoreBtn", handleShowMoreBtnClick);
+  clearEventListeners("galleryAddToFavoriteBtn", handleAddFavoriteBtnClick);
 
   for (let flight of flightsArr) {
     innerStr += createCard(
@@ -113,6 +116,7 @@ const createGallery = () => {
   createBtnEventListener("flightGalleryDeleteBtn", handleDeleteBtnClick);
   createBtnEventListener("flightGalleryEditBtn", handleEditBtnClick);
   createBtnEventListener("gallerySeeMoreBtn", handleShowMoreBtnClick);
+  createBtnEventListener("galleryAddToFavoriteBtn", handleAddFavoriteBtnClick);
 };
 //Creates event listener for the buttons
 const createBtnEventListener = (idKeyword, handleFunction) => {

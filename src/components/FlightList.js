@@ -58,7 +58,7 @@ const createItem = (destination, description, price, img, id) => {
         <button type="button" class="btn btn-success w-100" id="listSeeMoreBtn-${id}">
           See More<i class="bi bi-arrow-right m-2"></i>
         </button>
-        <button type="button" class="btn btn-primary w-100" id="addToFavoritebtn-${id}">
+        <button type="button" class="btn btn-primary w-100" id="listAddToFavoriteBtn-${id}">
           Add to favorites<i class="bi bi-arrow-right m-2"></i>
         </button>
         ${isAdmin ? adminBtns : ""}
@@ -102,7 +102,7 @@ const createList = () => {
   clearEventListeners("flightListDeleteBtn", handleDeleteBtnClick);
   clearEventListeners("flightListEditBtn", handleEditBtnClick);
   clearEventListeners("listSeeMoreBtn", handleShowMoreBtnClick);
-  clearEventListeners("addToFavoritebtn", handleAddFavoriteBtnClick);
+  clearEventListeners("listAddToFavoriteBtn", handleAddFavoriteBtnClick);
 
   for (let flight of flightsArr) {
     innerStr += createItem(
@@ -118,7 +118,7 @@ const createList = () => {
   createBtnEventListener("flightListDeleteBtn", handleDeleteBtnClick);
   createBtnEventListener("flightListEditBtn", handleEditBtnClick);
   createBtnEventListener("listSeeMoreBtn", handleShowMoreBtnClick);
-  createBtnEventListener("addToFavoritebtn", handleAddFavoriteBtnClick);
+  createBtnEventListener("listAddToFavoriteBtn", handleAddFavoriteBtnClick);
 };
 
 const createBtnEventListener = (idKeyword, handleFunction) => {

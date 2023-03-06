@@ -7,6 +7,7 @@ let isAdmin;
 let isConnected;
 let showNewPopup;
 let editSaveBtn = document.getElementById("editFlightPopupSaveBtn");
+let favoritePageBtn = document.getElementById("favorite-page-btn");
 
 let navAddNewFlightLink;
 let addNewFlight;
@@ -21,6 +22,7 @@ const initializeNavbar = (showNewPopupFromHomePage, addFlightFromHomePage) => {
   if (isConnected) {
     navBeforeLogin.classList.add("d-none");
     navAfterLogin.classList.remove("d-none");
+    favoritePageBtn.classList.remove("d-none");
   }
   showNewPopup = showNewPopupFromHomePage;
   addNewFlight = addFlightFromHomePage;

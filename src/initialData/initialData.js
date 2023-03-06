@@ -44,7 +44,7 @@ const createUserData = () => {
       "7179902",
       "omerbenda98@gmail.com",
       "0547563977",
-      "Omerbenda98!",
+      "Aa123456!",
 
       true
     ),

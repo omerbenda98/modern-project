@@ -184,6 +184,19 @@ const editFlight = () => {
 
 const addFavorite = (id) => {
   let selectedFlight = flightsArr.find((item) => item.id === +id);
+  let selectedListBtn = document.querySelector(
+    `[id$='listAddToFavoriteBtn-${id}']`
+  );
+  let selectedGalleryBtn = document.querySelector(
+    `[id$='galleryAddToFavoriteBtn-${id}']`
+  );
+  selectedListBtn.classList.add("d-none");
+  selectedGalleryBtn.classList.add("d-none");
+  for (let favorite of favoritesArr) {
+    if (favorite.id === selectedFlight.id) {
+      return;
+    }
+  }
   if (favoritesArr) {
     favoritesArr = [...favoritesArr, selectedFlight];
     localStorage.setItem("favorites", JSON.stringify(favoritesArr));

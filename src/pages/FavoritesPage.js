@@ -53,9 +53,20 @@ const createItem = (destination, description, price, img, id) => {
     </li>
   `;
 };
+const addFavoriteBack = (id) => {
+  let selectedListBtn = document.querySelector(
+    `[id$='listAddToFavoriteBtn-${id}']`
+  );
+  let selectedGalleryBtn = document.querySelector(
+    `[id$='galleryAddToFavoriteBtn-${id}']`
+  );
+  selectedListBtn.classList.remove("d-none");
+  selectedGalleryBtn.classList.remove("d-none");
+};
 
 const handleRemoveFavoriteBtnClick = (ev) => {
   removeFavorite(getIdFromClick(ev));
+  addFavoriteBack(getIdFromClick(ev));
 };
 
 const createList = () => {

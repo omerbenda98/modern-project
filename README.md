@@ -1,6 +1,6 @@
 # Flight Deals Website
 
-This website is a platform where users can search for and view available flights deals. Users can register and login to view the flights and add them to their favorites list. Additionally, business clients can edit and delete flight deals. The flights can be displayed in carousel, gallery, and list modes, and can be sorted alphabetically.
+This website is a platform where users can search for and view available flights deals. Users can register and login to view the flights and add them to their favorites list. Additionally, business clients can add, edit and delete flight deals. The flights can be displayed in carousel, gallery, and list modes, and can be sorted alphabetically.
 
 ## Features
 
@@ -19,15 +19,11 @@ The Flight Deals Website has the following features:
 To get started with this website, follow these steps:
 
 1. Click the 'login' button to enter the login page
-2. enter email "hackeru@gmail.com" and password "Aa123456!"
+2. enter email "omerbenda98@gmail.com" and password "Aa123456!"
 
 ## Usage
 
 Users can search for flights by typing keywords into the search bar. The search results can be displayed in the three display modes: carousel, gallery, and list. Users can add flights to their favorites list and delete them as well. Business clients can edit and delete flight deals. Additionally, users can view and edit their personal information on their profile page.
-
-## Contributing
-
-We welcome contributions from anyone interested in improving this website. If you would like to contribute, please fork this repository and submit a pull request with your changes.
 
 ## Credits
 
