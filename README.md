@@ -19,7 +19,7 @@ The Flight Deals Website has the following features:
 To get started with this website, follow these steps:
 
 1. Click the 'login' button to enter the login page
-2. enter email "omerbenda98@gmail.com" and password "Aa123456!"
+2. enter email "hackeru@gmail.com@gmail.com" and password "Aa123456!"
 
 ## Usage
 

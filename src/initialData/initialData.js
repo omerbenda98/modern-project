@@ -42,7 +42,7 @@ const createUserData = () => {
       "shimon peres",
       "26",
       "7179902",
-      "omerbenda98@gmail.com",
+      "hackeru@gmail.com",
       "0547563977",
       "Aa123456!",
 
