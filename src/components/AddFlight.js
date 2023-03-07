@@ -48,7 +48,6 @@ imgUrlInput.addEventListener("input", () => {
   checkImgUrlInput();
 });
 popupSaveBtn.addEventListener("click", () => {
-  console.log("here");
   newFlight = new Flight(
     getNextId(),
     destinationInput.value,
